@@ -425,6 +425,9 @@
     <Compile Include="Assets\3rd\tolua\ToLua\Reflection\LuaMethod.cs" />
     <Compile Include="Assets\3rd\tolua\ToLua\Reflection\LuaProperty.cs" />
     <Compile Include="Assets\3rd\tolua\ToLua\Reflection\LuaReflection.cs" />
+    <Compile Include="Assets\Scripts\Game\Const\AppConst.cs" />
+    <Compile Include="Assets\Scripts\Game\Main.cs" />
+    <Compile Include="Assets\Scripts\Game\StartUp.cs" />
     <None Include="Assets\3rd\FairyGUI\ReadMe - 3.5.1.txt" />
     <None Include="Assets\3rd\FairyGUI\Examples\Resources\RenderTexture\FullScreen.shader" />
     <None Include="Assets\3rd\FairyGUI\Examples\Resources\Role\Materials\Role-Diffuse.shader" />
