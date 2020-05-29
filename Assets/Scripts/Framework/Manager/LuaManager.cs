@@ -14,6 +14,7 @@ namespace LuaFramework {
         // Use this for initialization
         void Awake() {
             enabled = false;
+            new LuaResLoader();
             lua = new LuaState();
             this.OpenLibs();
             lua.LuaSetTop(0);
@@ -21,6 +22,8 @@ namespace LuaFramework {
             LuaBinder.Bind(lua);
             DelegateFactory.Init();
             LuaCoroutine.Register(lua, this);
+
+            this.InitStart();
         }
 
         public void OnDestroy()
@@ -36,7 +39,7 @@ namespace LuaFramework {
         }
 
 
-        public virtual void InitStart()
+        public  void InitStart()
         {
             if (Application.isEditor && !AppConst.LuaBundleMode)
             {
@@ -82,7 +85,7 @@ namespace LuaFramework {
 
             //执行LuaProxy.StartMain
             lua.DoFile("Main.lua");
-            LuaFunction main = lua.GetFunction("LuaProxy.StartMain");
+            LuaFunction main = lua.GetFunction("StartMain");
             main.Call();
             main.Dispose();
             main = null;
@@ -93,6 +96,7 @@ namespace LuaFramework {
             loop = gameObject.AddComponent<LuaLooper>();
             loop.luaState = lua;
 
+            Debug.Log("初始化lua完成 调用mian脚本");
         }
 
         public bool IsInitLuaOk()
