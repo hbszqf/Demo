@@ -85,7 +85,7 @@ namespace LuaFramework {
 
             //执行LuaProxy.StartMain
             lua.DoFile("Main.lua");
-            LuaFunction main = lua.GetFunction("StartMain");
+            LuaFunction main = lua.GetFunction("Main.StartMain");
             main.Call();
             main.Dispose();
             main = null;
