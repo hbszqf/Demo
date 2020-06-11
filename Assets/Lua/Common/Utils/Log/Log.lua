@@ -12,9 +12,9 @@ setmetatable(M, {
         return value
     end,
 
-    __call = function(...)
-        M.__Print(M,...)
-    end
+    -- __call = function(...)
+    --     M.__Print(M,...)
+    -- end
 })
 
 
@@ -22,9 +22,13 @@ function M.__create(name)
     return M.new(name)
 end
 
+function M.__call(...) 
+    M.__Print(...)
+end
 
-function M.ctor(name)
-    self.isEnabled = false
+
+function M:ctor(name)
+    self.isEnabled = true
     self.color = "#23A8FF"
     self.name = name
     self.isPrintTraceback = true
