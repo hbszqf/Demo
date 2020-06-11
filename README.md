@@ -14,6 +14,11 @@ tolua 下载地址：https://github.com/topameng/tolua      集成帖子：https://my.osch
 完成
 
 当前目标 完成c# framework  完成luaFrameWork  能够执行到lua脚本   2020/5/29
+完成
+
+解决lua的打印问题      2020/6/1
+
+
 
 
 
