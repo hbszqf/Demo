@@ -17,6 +17,14 @@ tolua 下载地址：https://github.com/topameng/tolua      集成帖子：https://my.osch
 完成
 
 解决lua的打印问题      2020/6/1
+完成lualog 集成   2020/6/11
+
+集成 项目资源框架  包括 ab那一套 （核心 核心！！！！！！！！！！）
+1.总体架构
+2.editor部分
+3.ab打包
+4.ab资源加载
+5.工具流
 
 
 
