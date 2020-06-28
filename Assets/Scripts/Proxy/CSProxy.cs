@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using LuaFramework;
 using LuaInterface;
-using UObject = UnityEngine.Object
+using UObject = UnityEngine.Object;
 
 public class CSProxy 
 {

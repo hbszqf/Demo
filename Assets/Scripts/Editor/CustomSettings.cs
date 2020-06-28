@@ -6,6 +6,7 @@ using UnityEditor;
 
 using BindType = ToLuaMenu.BindType;
 using System.Reflection;
+using FairyGUI;
 
 public static class CustomSettings
 {
@@ -153,8 +154,53 @@ public static class CustomSettings
         _GT(typeof(Resources)),     
         _GT(typeof(LuaProfiler)),
 
+        //FairyGUI 导出类
+        _GT(typeof(EventContext)),
+        _GT(typeof(EventDispatcher)),
+        _GT(typeof(EventListener)),
+        _GT(typeof(InputEvent)),
+        _GT(typeof(DisplayObject)),
+        _GT(typeof(Container)),
+        _GT(typeof(Stage)),
+        _GT(typeof(FairyGUI.Controller)),
+        _GT(typeof(GObject)),
+        _GT(typeof(GGraph)),
+        _GT(typeof(GGroup)),
+        _GT(typeof(GImage)),
+        _GT(typeof(GLoader)),
+        _GT(typeof(GMovieClip)),
+        _GT(typeof(TextFormat)),
+        _GT(typeof(GTextField)),
+        _GT(typeof(GRichTextField)),
+        _GT(typeof(GTextInput)),
+        _GT(typeof(GComponent)),
+        _GT(typeof(GList)),
+        _GT(typeof(GRoot)),
+        _GT(typeof(GLabel)),
+        _GT(typeof(GButton)),
+        _GT(typeof(GComboBox)),
+        _GT(typeof(GProgressBar)),
+        _GT(typeof(GSlider)),
+        _GT(typeof(PopupMenu)),
+        _GT(typeof(ScrollPane)),
+        _GT(typeof(Transition)),
+        _GT(typeof(UIPackage)),
+        _GT(typeof(Window)),
+        _GT(typeof(GObjectPool)),
+        _GT(typeof(Relations)),
+        _GT(typeof(RelationType)),
+        _GT(typeof(Timers)),
+        _GT(typeof(GTween)),
+        _GT(typeof(GTweener)),
+        _GT(typeof(EaseType)),
+        _GT(typeof(TweenValue)),
+        _GT(typeof(UIObjectFactory)),
+
+
         //自定义导出类
-        _GT(typeof(CsProxy)),
+        _GT(typeof(CSProxy)),
+
+
     };
 
     public static List<Type> dynamicList = new List<Type>()
