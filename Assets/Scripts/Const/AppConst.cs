@@ -5,7 +5,12 @@ using UnityEngine;
 
 public class AppConst 
 {
-    public const string DynamicAssetPathPrefix = "Assets/Res/Dynamic/";//读取Dynamic Asset的文件路径前缀
+
+#if FOR_ART
+    public const string DynamicAssetPathPrefix = "Assets/ResArt/StaticArt/";//美术预览读取路径
+#else
+    public const string DynamicAssetPathPrefix = "Assets/Res/Dynamic/";//真正程序的读取路径
+#endif
     public const string FairyGUIEditorOutPut =   DynamicAssetPathPrefix + "FairyGUI/";//读取Dynamic Asset的文件路径前缀
     static public  bool LuaBundleMode = false;    // 是否使用luaab
 

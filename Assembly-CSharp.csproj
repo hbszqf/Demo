@@ -497,6 +497,7 @@
     <None Include="Assets\3rd\FairyGUI\Resources\Shaders\AddOn\FairyGUI-BlurFilter.shader" />
     <None Include="Assets\3rd\tolua\ToLua\Injection\InjectionBridgeEditorInfo.xml" />
     <None Include="Assets\3rd\tolua\ToLua\Injection\LuaInjectionSkipPaths.txt" />
+    <None Include="Assets\ResArt\StaticArt\Shader\Model\Ultimate_diffuse.shader" />
     <None Include="Assets\3rd\FairyGUI\Resources\Shaders\FairyGUI-BMFont.shader" />
     <Reference Include="UnityEngine">
       <HintPath>D:/Unity/2019/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

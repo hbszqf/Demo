@@ -28,7 +28,7 @@ namespace LuaFramework
 
         protected string RelativePath2AssetPath(string relativePath)
         {
-            return PathConfig.ToBundle_PATH + "/" + relativePath;
+            return PathConfig.ToBundle_PATH + relativePath;
         }
 
     }
