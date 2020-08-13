@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &3262320705596736580
+--- !u!1001 &1199699536707252273
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100108, guid: 4a25dbd23d96ad049a6e8f1f372f4269, type: 3}
       propertyPath: m_Name
-      value: boss_001
+      value: boss_001 Variant
       objectReference: {fileID: 0}
     - target: {fileID: 400106, guid: 4a25dbd23d96ad049a6e8f1f372f4269, type: 3}
       propertyPath: m_LocalPosition.x

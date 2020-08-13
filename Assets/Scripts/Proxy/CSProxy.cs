@@ -19,6 +19,7 @@ public class CSProxy
             if (func != null)
             {
                 func.Call(GameObject.Instantiate<Object>(obj));
+                //func.Call(obj);
                 func.Dispose();
                 func = null;
             }
