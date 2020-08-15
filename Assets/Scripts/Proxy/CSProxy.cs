@@ -25,4 +25,9 @@ public class CSProxy
             }
         });    
     }
+
+    public static void LoadScene()
+    { 
+    
+    }
 }
