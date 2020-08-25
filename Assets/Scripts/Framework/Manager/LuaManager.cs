@@ -173,10 +173,10 @@ namespace LuaFramework {
 
 #if UNITY_EDITOR
 
-            //if (LuaConst.openLuaSocket)
-            //{
-            //    OpenLuaSocket();
-            //}
+            if (LuaConst.openLuaSocket)
+            {
+                OpenLuaSocket();
+            }
 #endif
         }
 

@@ -10,17 +10,7 @@ public class StartUpCommand : ControllerCommand {
 
         //-----------------初始化管理器-----------------------
         AppFacade.Instance.AddManager<LuaManager>();
-        //AppFacade.Instance.AddManager<NetworkManager>();
-        //AppFacade.Instance.AddManager<UpdateManager>();
-        //AppFacade.Instance.AddManager<LuaDelegateManager>();
-        //AppFacade.Instance.AddManager<UnitySceneManager>();
-        //AppFacade.Instance.AddManager<AB.ABManager>();
-
-
-        //AppFacade.Instance.AddManager<LuaBridgeManager>();
-
-
-
+        AppFacade.Instance.AddManager<NetworkManager>();
 
     }
 }

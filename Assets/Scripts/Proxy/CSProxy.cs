@@ -26,8 +26,28 @@ public class CSProxy
         });    
     }
 
+    public static bool GetIsShenHe()
+    {
+        return false;
+    }
     public static void LoadScene()
     { 
     
+    }
+
+
+    //发送数据
+    public static void SendNetMessage(byte[] strBuffer, int slot = 0)
+    {
+        NetworkManager netManager = AppFacade.Instance.GetManager<NetworkManager>();
+
+        netManager.SendMessage(strBuffer, slot);
+    }
+
+    //请求连接
+    public static void SendNetConnect(string host, int port, bool noDelay, LuaFunction func, int slot = 0)
+    {
+        NetworkManager netManager = AppFacade.Instance.GetManager<NetworkManager>();
+        netManager.SendConnect(host, port, noDelay, func, slot);
     }
 }
