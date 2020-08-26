@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="8bmx0up3">
+  <resources>
+    <image id="vk3e1" name="LoadingUI_10.png" path="/图片/"/>
+    <component id="vk3e2" name="组件_更新界面.xml" path="/组件/" exported="true"/>
+  </resources>
+  <publish name="" extractAlpha="true"/>
+</packageDescription>
