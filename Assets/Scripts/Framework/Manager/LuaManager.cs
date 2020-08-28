@@ -154,7 +154,7 @@ namespace LuaFramework {
             lua.OpenLibs(LuaDLL.luaopen_struct);
 
             //protobuf_c
-           // lua.OpenLibs(LuaDLL.luaopen_protobuf_c);
+            lua.OpenLibs(LuaDLL.luaopen_protobuf_c);
 
             //cjson
             lua.LuaGetField(LuaIndexes.LUA_REGISTRYINDEX, "_LOADED");

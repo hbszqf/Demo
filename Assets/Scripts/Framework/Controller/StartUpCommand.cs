@@ -9,8 +9,8 @@ public class StartUpCommand : ControllerCommand {
         //AppFacade.Instance.RegisterCommand(NotiConst.DISPATCH_MESSAGE, typeof(SocketCommand));
 
         //-----------------初始化管理器-----------------------
-        AppFacade.Instance.AddManager<LuaManager>();
         AppFacade.Instance.AddManager<NetworkManager>();
+        AppFacade.Instance.AddManager<LuaManager>();
 
     }
 }

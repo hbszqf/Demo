@@ -4,6 +4,7 @@ using UnityEngine;
 using LuaFramework;
 using LuaInterface;
 using UObject = UnityEngine.Object;
+using System.IO;
 
 public class CSProxy 
 {
@@ -49,5 +50,34 @@ public class CSProxy
     {
         NetworkManager netManager = AppFacade.Instance.GetManager<NetworkManager>();
         netManager.SendConnect(host, port, noDelay, func, slot);
+    }
+
+    public static void NetDisconnect(int slot = 0)
+    {
+        NetworkManager netManager = AppFacade.Instance.GetManager<NetworkManager>();
+        netManager.Disconnect(slot);
+    }
+
+    public static string PbPath
+    {
+#if UNITY_EDITOR 
+        get { return Application.dataPath + "/" + "ResArt" + "/DynamicArt/Protobuf"; }
+#else
+        get { return DataPath + "Protobuf"; }
+#endif
+    }
+
+    static public LuaByteBuffer LoadFile(string path)
+    {
+        //if (false)
+        //{
+        //    byte[] ba = File.ReadAllBytes(path);
+        //    return new LuaByteBuffer(Util.DecryptByByte(ba, VersionInfo.GetChannelInPackage()));
+        //}
+        //else
+        //{
+        //    return new LuaByteBuffer(File.ReadAllBytes(path));
+        //}
+        return new LuaByteBuffer(File.ReadAllBytes(path));
     }
 }

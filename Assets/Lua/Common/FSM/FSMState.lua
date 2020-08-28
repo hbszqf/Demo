@@ -1,8 +1,6 @@
 local M = class(...)
 
 function M:ctor(fsm, name)
-    M.super.ctor(self)
-    
     self.fsm = fsm
     self.name = name
 end

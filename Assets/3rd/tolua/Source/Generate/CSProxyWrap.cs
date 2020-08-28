@@ -8,8 +8,15 @@ public class CSProxyWrap
 	{
 		L.BeginClass(typeof(CSProxy), typeof(System.Object));
 		L.RegFunction("LoadRes", LoadRes);
+		L.RegFunction("GetIsShenHe", GetIsShenHe);
+		L.RegFunction("LoadScene", LoadScene);
+		L.RegFunction("SendNetMessage", SendNetMessage);
+		L.RegFunction("SendNetConnect", SendNetConnect);
+		L.RegFunction("NetDisconnect", NetDisconnect);
+		L.RegFunction("LoadFile", LoadFile);
 		L.RegFunction("New", _CreateCSProxy);
 		L.RegFunction("__tostring", ToLua.op_ToString);
+		L.RegVar("PbPath", get_PbPath, null);
 		L.EndClass();
 	}
 
@@ -47,6 +54,165 @@ public class CSProxyWrap
 			LuaFunction arg1 = ToLua.CheckLuaFunction(L, 2);
 			CSProxy.LoadRes(arg0, arg1);
 			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int GetIsShenHe(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 0);
+			bool o = CSProxy.GetIsShenHe();
+			LuaDLL.lua_pushboolean(L, o);
+			return 1;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int LoadScene(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 0);
+			CSProxy.LoadScene();
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int SendNetMessage(IntPtr L)
+	{
+		try
+		{
+			int count = LuaDLL.lua_gettop(L);
+
+			if (count == 1)
+			{
+				byte[] arg0 = ToLua.CheckByteBuffer(L, 1);
+				CSProxy.SendNetMessage(arg0);
+				return 0;
+			}
+			else if (count == 2)
+			{
+				byte[] arg0 = ToLua.CheckByteBuffer(L, 1);
+				int arg1 = (int)LuaDLL.luaL_checknumber(L, 2);
+				CSProxy.SendNetMessage(arg0, arg1);
+				return 0;
+			}
+			else
+			{
+				return LuaDLL.luaL_throw(L, "invalid arguments to method: CSProxy.SendNetMessage");
+			}
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int SendNetConnect(IntPtr L)
+	{
+		try
+		{
+			int count = LuaDLL.lua_gettop(L);
+
+			if (count == 4)
+			{
+				string arg0 = ToLua.CheckString(L, 1);
+				int arg1 = (int)LuaDLL.luaL_checknumber(L, 2);
+				bool arg2 = LuaDLL.luaL_checkboolean(L, 3);
+				LuaFunction arg3 = ToLua.CheckLuaFunction(L, 4);
+				CSProxy.SendNetConnect(arg0, arg1, arg2, arg3);
+				return 0;
+			}
+			else if (count == 5)
+			{
+				string arg0 = ToLua.CheckString(L, 1);
+				int arg1 = (int)LuaDLL.luaL_checknumber(L, 2);
+				bool arg2 = LuaDLL.luaL_checkboolean(L, 3);
+				LuaFunction arg3 = ToLua.CheckLuaFunction(L, 4);
+				int arg4 = (int)LuaDLL.luaL_checknumber(L, 5);
+				CSProxy.SendNetConnect(arg0, arg1, arg2, arg3, arg4);
+				return 0;
+			}
+			else
+			{
+				return LuaDLL.luaL_throw(L, "invalid arguments to method: CSProxy.SendNetConnect");
+			}
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int NetDisconnect(IntPtr L)
+	{
+		try
+		{
+			int count = LuaDLL.lua_gettop(L);
+
+			if (count == 0)
+			{
+				CSProxy.NetDisconnect();
+				return 0;
+			}
+			else if (count == 1)
+			{
+				int arg0 = (int)LuaDLL.luaL_checknumber(L, 1);
+				CSProxy.NetDisconnect(arg0);
+				return 0;
+			}
+			else
+			{
+				return LuaDLL.luaL_throw(L, "invalid arguments to method: CSProxy.NetDisconnect");
+			}
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int LoadFile(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 1);
+			string arg0 = ToLua.CheckString(L, 1);
+			LuaInterface.LuaByteBuffer o = CSProxy.LoadFile(arg0);
+			ToLua.Push(L, o);
+			return 1;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_PbPath(IntPtr L)
+	{
+		try
+		{
+			LuaDLL.lua_pushstring(L, CSProxy.PbPath);
+			return 1;
 		}
 		catch (Exception e)
 		{
