@@ -3,19 +3,25 @@ require("3rd/pbc/protobuf")
 local M = class(..., base)
 
 function M:OnEnter()
+    self.isException = false
     CSProxy.SendNetConnect(self.socket.ip , self.socket.port, self.socket.noDelay, self.socket.netCallback, self.socket.slot)
+    
+    if not ret then
+        self.isException = true
+    end
 end     
 
+function M:OnUpdate()
+    if self.isException then
+        self:OnConnect(false)
+    end
+end
 
 --连接成功
 function M:OnConnect(suc)
     if suc then
-        -- local extend = protobuf.encode("com.kw.wow.proto.MailReadRq",{lordId=1,keyId="hbqf"})
-        -- CSProxy.SendNetMessage(extend, self.socket.slot)
-        -- Log.QF("发送数据到服务器")
         Log.QF("【连接服务器成功】ip = " .. self.socket.ip .. "; port = " .. self.socket.port)
         self.socket:SwitchTo("connected")
-        
     else
         Log.QF("【连接服务器失败】ip = " .. self.socket.ip .. "; port = " .. self.socket.port)
         self.socket:SwitchTo("idle")
@@ -27,7 +33,9 @@ function M:OnException()
     self.socket:SwitchTo("idle")
 end
 
-
+--接收到数据
+function M:OnReceivedMessage(data)
+end
 
 function M:OnDisconnect()
     self.socket:SwitchTo("idle")

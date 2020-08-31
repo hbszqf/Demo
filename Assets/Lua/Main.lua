@@ -10,25 +10,11 @@ require("Common.init")
 require("Net.init")
 
 
---注册proto
-do
-    local protobufPath = CSProxy.PbPath
-    -- for _, name in ipairs(tmProto.__loadlist__) do
-        
-    --     --protobuf.register_file(protobufPath .. name)
-        
-    --     Log.Print("注册 .pb 文件: " , name, path)
-    --     protobuf.register_buffer(CsProxy.LoadFile(path))
-    -- end
-    protobuf.register_buffer(CSProxy.LoadFile(protobufPath.."/GameError.proto"))
-    protobuf.register_buffer(CSProxy.LoadFile(protobufPath.."/GameMsg.proto"))
-    protobuf.register_buffer(CSProxy.LoadFile(protobufPath.."/ApiMsg.proto"))
-    protobuf.register_buffer(CSProxy.LoadFile(protobufPath.."/ApiUserDto.proto"))
-    protobuf.register_buffer(CSProxy.LoadFile(protobufPath.."/ApiUser.proto"))
-end
-
 
 function M.StartMain()
+
+    --Network.Connect("192.168.1.80",3000,1)
+
     --默认
     --Network.Connect("192.168.1.150",8080,1)
 
@@ -58,12 +44,9 @@ function M.StartMain()
         params.zone           ="23456"
 
         local ret, userLoginRsp = Network.Send_cor("UserLogin",params)
-        
-
-
     end)
 
-    --Network.Connect("192.168.1.80",3000,1)
+   
 
 end 
 

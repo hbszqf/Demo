@@ -8,6 +8,8 @@ local M = class(..., FSM)
 function M:ctor(slot, autoRecounnect, isLog)
     M.super.ctor(self)
     self.slot = slot
+    self.clientIndex = 0
+
     self.autoRecounnect = autoRecounnect
     self:AddState("idle", StateIdle)                --空闲
     self:AddState("connected", StateConnected)      --连接
@@ -18,7 +20,7 @@ function M:ctor(slot, autoRecounnect, isLog)
         if event == 101 then
             self:OnConnect(true)
         elseif event == 102 then
-            --self:OnException()
+            self:OnException()
         elseif event == 103 then
            -- self:OnDisconnect()
         elseif event == 104 then
@@ -53,11 +55,17 @@ function M:Send(tmParams)
 
     -- local testData = protobuf.encode(com.gzyouai.hummingbird.biwu2.proto.cmd.test, {params1 = 1,params2 = 2})
     -- CSProxy.SendNetMessage(testData, self.socket.slot)
-    local messageName    = tmParams.messageName
-    local tmParams       = tmParams.params
+    -- local messageName    = tmParams.messageName
+    -- local tmParams       = tmParams.params
 
-    local clientRequestData  = self:CreateClientRequestData(messageName,tmParams)
-    self:GetCurrentState():AddNetworkRequest(clientRequestData)
+    local request = NetworkRequest.GetFromPool(tmParams)
+    local clientRequestData  = self:CreateClientRequestData(tmParams.messageName,tmParams.params)
+    Log.QF("clientIndex===="..clientRequestData.clientIndex)
+    request.index = clientRequestData.clientIndex
+    
+    local sendData = Proto.Encode("Request", clientRequestData)
+    request:SetSendData(sendData)
+    self:GetCurrentState():AddNetworkRequest(request)
 end 
 
 
@@ -80,6 +88,17 @@ end
 
 ----------------------------------------------------------
 
+
+--断线
+function M:OnDisconnect()
+    self:GetCurrentState():OnDisconnect()
+end
+
+--异常
+function M:OnException()
+    self:GetCurrentState():OnException()
+end
+
 --连接成功
 function M:OnConnect(suc)
     self:GetCurrentState():OnConnect(suc)
@@ -92,21 +111,27 @@ end
 
 --创建客户端最外层数据包
 function M:CreateClientRequestData(messageName,tmParams)
+    local messageId = Message.GetMessageId(messageName)
+    if messageId == nil then
+        assert(false, string.format("%s 的 messageId 为空",messageName))
+        return false
+    end
 
-    local fullName = "com.kw.wow.proto."
-    local reqMsgName = fullName..messageName.."Req"
-
-    Log.QF(reqMsgName)
-    Log.QF:Dump(tmParams)
-    local data = protobuf.encode(reqMsgName, tmParams)
+    local reqMessageName = Message.GetReqMessageName(messageId)
+    Log.QF("reqMessageName==",reqMessageName)
+    self.clientIndex = self.clientIndex + 1
+    local data = Proto.Encode(reqMessageName,tmParams)
 
     local clientRequestData = {}
-    clientRequestData.apiId = 10001
-    clientRequestData.clientIndex = 1
+    clientRequestData.apiId = messageId
+    
+    clientRequestData.clientIndex = self.clientIndex
     clientRequestData.data = data
 
-    local clientBuffer = protobuf.encode("com.kw.wow.proto.Request", clientRequestData)
-    return clientBuffer
+    return clientRequestData
+    -- Log.QF:Dump(clientRequestData)
+    -- local clientBuffer = Proto.Encode("Request", clientRequestData)
+    -- return clientBuffer
 end
 
 
