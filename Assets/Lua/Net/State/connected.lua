@@ -11,6 +11,29 @@ function M:OnEnter()
     self.timestamp = 0
 end
 
+
+-- lua 请求超时逻辑
+function M:OnUpdate()
+    self.timestamp = self.timestamp + 1
+    local now = self.timestamp
+    local isTimeOut = false
+    for index, request in pairs( self.tmRequest ) do
+        local time = request:GetTimeStamp()
+        if now - time > 8 then
+            --if self.socket.isLog then
+                Log.NetError("请求超时:", self.socket.slot, request.messageName, request.index)
+            --end
+            --self.socket:SwitchTo("idle")
+            if not self.socket.autoRecounnect or not request.isAutoReconnect then
+                self.socket:SwitchTo("idle")
+            else
+                self.socket:SwitchTo("reconnect")
+            end
+            break
+        end
+    end
+end
+
 function M:OnDisconnect()
     --如果不会自动重连
     if not self.socket.autoRecounnect then

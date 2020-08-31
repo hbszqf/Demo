@@ -30,6 +30,11 @@ function M:ctor(slot, autoRecounnect, isLog)
         end   
     end
 
+    
+    self.timer = Timer.New(function()
+        self:OnUpdate()
+    end,1,-1):Start()
+
     --初始切換到idle
     self:SwitchTo("idle")
 end
@@ -50,17 +55,15 @@ function M:Connect(ip, port, serverId, connectCallback, disconnectCallback)
 end
 
 
+
+function M:OnUpdate()
+    self:GetCurrentState():OnUpdate()
+end
+
 --发送数据给服务器
 function M:Send(tmParams)
-
-    -- local testData = protobuf.encode(com.gzyouai.hummingbird.biwu2.proto.cmd.test, {params1 = 1,params2 = 2})
-    -- CSProxy.SendNetMessage(testData, self.socket.slot)
-    -- local messageName    = tmParams.messageName
-    -- local tmParams       = tmParams.params
-
     local request = NetworkRequest.GetFromPool(tmParams)
     local clientRequestData  = self:CreateClientRequestData(tmParams.messageName,tmParams.params)
-    Log.QF("clientIndex===="..clientRequestData.clientIndex)
     request.index = clientRequestData.clientIndex
     
     local sendData = Proto.Encode("Request", clientRequestData)
@@ -118,7 +121,7 @@ function M:CreateClientRequestData(messageName,tmParams)
     end
 
     local reqMessageName = Message.GetReqMessageName(messageId)
-    Log.QF("reqMessageName==",reqMessageName)
+    
     self.clientIndex = self.clientIndex + 1
     local data = Proto.Encode(reqMessageName,tmParams)
 
@@ -129,9 +132,6 @@ function M:CreateClientRequestData(messageName,tmParams)
     clientRequestData.data = data
 
     return clientRequestData
-    -- Log.QF:Dump(clientRequestData)
-    -- local clientBuffer = Proto.Encode("Request", clientRequestData)
-    -- return clientBuffer
 end
 
 

@@ -23,6 +23,14 @@ function M.StartMain()
 
     --大唐
 
+    -- if true then
+    --     return 
+    -- end
+
+    --登录游戏
+    GameMgr.LoginGame()
+
+
     CorUtil.StartCor(function(corUtil)
         --先连接服务器
         local ret, msg = Network.Connect_cor("192.168.1.44", 9080, 1)
@@ -46,7 +54,6 @@ function M.StartMain()
         local ret, userLoginRsp = Network.Send_cor("UserLogin",params)
     end)
 
-   
 
 end 
 

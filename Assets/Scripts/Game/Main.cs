@@ -17,7 +17,7 @@ public class Main : MonoBehaviour
         Debug.Log("完成异步操作1");
 
 
-        AppFacade.Instance.StartUp(gameObject);
+        //AppFacade.Instance.StartUp(gameObject);
 
         yield break;
 

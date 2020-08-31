@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<component size="1080,640">
+<component size="1280,720">
   <displayList>
-    <image id="n8_sbuy" name="n8" src="vk3e1" fileName="图片/LoadingUI_10.png" xy="0,-640">
-      <relation target="" sidePair="width-width,middle-middle"/>
+    <image id="n8_sbuy" name="bg" src="pvf63" fileName="图片/loading_01.png" xy="0,0">
+      <relation target="" sidePair="width-width,height-height"/>
     </image>
+    <component id="n10_pvf6" name="progress" src="pvf66" fileName="组件/组件_进度条.xml" xy="252,661" size="775,19">
+      <relation target="" sidePair="center-center,bottom-bottom"/>
+      <ProgressBar value="100" max="100"/>
+    </component>
+    <text id="n11_pvf6" name="tips" xy="599,623" size="82,26" fontSize="18" color="#ffffff" text="loading...">
+      <relation target="" sidePair="center-center"/>
+      <relation target="n10_pvf6" sidePair="bottom-top"/>
+    </text>
   </displayList>
 </component>

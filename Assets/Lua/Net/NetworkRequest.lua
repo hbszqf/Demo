@@ -40,4 +40,10 @@ function M:GetSendData()
 end
 
 
+function M:GetTimeStamp()
+    return self.timestamp
+end
+
+
+
 return  M

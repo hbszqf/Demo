@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <packageDescription id="8bmx0up3">
   <resources>
-    <image id="vk3e1" name="LoadingUI_10.png" path="/图片/"/>
     <component id="vk3e2" name="组件_更新界面.xml" path="/组件/" exported="true"/>
+    <image id="pvf63" name="loading_01.png" path="/图片/"/>
+    <image id="pvf64" name="ui_role_11.png" path="/图片/" scale="9grid" scale9grid="7,13,7,8"/>
+    <image id="pvf65" name="ui_role_10.png" path="/图片/" scale="9grid" scale9grid="17,11,16,10"/>
+    <component id="pvf66" name="组件_进度条.xml" path="/组件/"/>
   </resources>
   <publish name="" extractAlpha="true"/>
 </packageDescription>

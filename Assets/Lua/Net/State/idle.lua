@@ -12,4 +12,8 @@ function M:AddNetworkRequest(request)
     request:OnTimeOut()
 end
 
+function M:OnUpdate()
+
+end
+
 return M
