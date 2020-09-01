@@ -1,0 +1,1 @@
+GameBehaviourMgr = import(".GameBehaviourMgr.GameBehaviourMgr")

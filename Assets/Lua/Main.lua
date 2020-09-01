@@ -8,6 +8,8 @@ Main = M
 
 require("Common.init")
 require("Net.init")
+require("Game.Manager.init")
+require("Game.Controller.init")
 
 
 
@@ -27,8 +29,10 @@ function M.StartMain()
     --     return 
     -- end
 
+    
+
     --登录游戏
-    GameMgr.LoginGame()
+    GameBehaviourMgr.LoginGame()
 
 
     CorUtil.StartCor(function(corUtil)
