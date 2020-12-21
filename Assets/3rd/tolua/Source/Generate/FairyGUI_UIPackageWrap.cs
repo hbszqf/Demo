@@ -30,6 +30,7 @@ public class FairyGUI_UIPackageWrap
 		L.RegFunction("GetItems", GetItems);
 		L.RegFunction("GetItem", GetItem);
 		L.RegFunction("GetItemByName", GetItemByName);
+		L.RegFunction("SetItemAsset", SetItemAsset);
 		L.RegFunction("New", _CreateFairyGUI_UIPackage);
 		L.RegFunction("__tostring", ToLua.op_ToString);
 		L.RegVar("unloadBundleByFGUI", get_unloadBundleByFGUI, set_unloadBundleByFGUI);
@@ -41,7 +42,9 @@ public class FairyGUI_UIPackageWrap
 		L.RegVar("customId", get_customId, set_customId);
 		L.RegVar("resBundle", get_resBundle, null);
 		L.RegVar("dependencies", get_dependencies, null);
+		L.RegVar("onReleaseResource", get_onReleaseResource, set_onReleaseResource);
 		L.RegFunction("LoadResource", FairyGUI_UIPackage_LoadResource);
+		L.RegFunction("LoadResourceAsync", FairyGUI_UIPackage_LoadResourceAsync);
 		L.RegFunction("CreateObjectCallback", FairyGUI_UIPackage_CreateObjectCallback);
 		L.EndClass();
 	}
@@ -189,6 +192,15 @@ public class FairyGUI_UIPackageWrap
 				byte[] arg0 = ToLua.CheckByteBuffer(L, 1);
 				string arg1 = ToLua.ToString(L, 2);
 				FairyGUI.UIPackage.LoadResource arg2 = (FairyGUI.UIPackage.LoadResource)ToLua.ToObject(L, 3);
+				FairyGUI.UIPackage o = FairyGUI.UIPackage.AddPackage(arg0, arg1, arg2);
+				ToLua.PushObject(L, o);
+				return 1;
+			}
+			else if (count == 3 && TypeChecker.CheckTypes<byte[], string, FairyGUI.UIPackage.LoadResourceAsync>(L, 1))
+			{
+				byte[] arg0 = ToLua.CheckByteBuffer(L, 1);
+				string arg1 = ToLua.ToString(L, 2);
+				FairyGUI.UIPackage.LoadResourceAsync arg2 = (FairyGUI.UIPackage.LoadResourceAsync)ToLua.ToObject(L, 3);
 				FairyGUI.UIPackage o = FairyGUI.UIPackage.AddPackage(arg0, arg1, arg2);
 				ToLua.PushObject(L, o);
 				return 1;
@@ -621,6 +633,25 @@ public class FairyGUI_UIPackageWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int SetItemAsset(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 4);
+			FairyGUI.UIPackage obj = (FairyGUI.UIPackage)ToLua.CheckObject<FairyGUI.UIPackage>(L, 1);
+			FairyGUI.PackageItem arg0 = (FairyGUI.PackageItem)ToLua.CheckObject<FairyGUI.PackageItem>(L, 2);
+			object arg1 = ToLua.ToVarObject(L, 3);
+			FairyGUI.DestroyMethod arg2 = (FairyGUI.DestroyMethod)ToLua.CheckObject(L, 4, typeof(FairyGUI.DestroyMethod));
+			obj.SetItemAsset(arg0, arg1, arg2);
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int get_unloadBundleByFGUI(IntPtr L)
 	{
 		try
@@ -777,6 +808,13 @@ public class FairyGUI_UIPackageWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_onReleaseResource(IntPtr L)
+	{
+		ToLua.Push(L, new EventObject(typeof(System.Action<FairyGUI.PackageItem>)));
+		return 1;
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int set_unloadBundleByFGUI(IntPtr L)
 	{
 		try
@@ -826,6 +864,41 @@ public class FairyGUI_UIPackageWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_onReleaseResource(IntPtr L)
+	{
+		try
+		{
+			EventObject arg0 = null;
+
+			if (LuaDLL.lua_isuserdata(L, 2) != 0)
+			{
+				arg0 = (EventObject)ToLua.ToObject(L, 2);
+			}
+			else
+			{
+				return LuaDLL.luaL_throw(L, "The event 'FairyGUI.UIPackage.onReleaseResource' can only appear on the left hand side of += or -= when used outside of the type 'FairyGUI.UIPackage'");
+			}
+
+			if (arg0.op == EventOp.Add)
+			{
+				System.Action<FairyGUI.PackageItem> ev = (System.Action<FairyGUI.PackageItem>)arg0.func;
+				FairyGUI.UIPackage.onReleaseResource += ev;
+			}
+			else if (arg0.op == EventOp.Sub)
+			{
+				System.Action<FairyGUI.PackageItem> ev = (System.Action<FairyGUI.PackageItem>)arg0.func;
+				FairyGUI.UIPackage.onReleaseResource -= ev;
+			}
+
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int FairyGUI_UIPackage_LoadResource(IntPtr L)
 	{
 		try
@@ -842,6 +915,33 @@ public class FairyGUI_UIPackageWrap
 			{
 				LuaTable self = ToLua.CheckLuaTable(L, 2);
 				Delegate arg1 = DelegateTraits<FairyGUI.UIPackage.LoadResource>.Create(func, self);
+				ToLua.Push(L, arg1);
+			}
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int FairyGUI_UIPackage_LoadResourceAsync(IntPtr L)
+	{
+		try
+		{
+			int count = LuaDLL.lua_gettop(L);
+			LuaFunction func = ToLua.CheckLuaFunction(L, 1);
+
+			if (count == 1)
+			{
+				Delegate arg1 = DelegateTraits<FairyGUI.UIPackage.LoadResourceAsync>.Create(func);
+				ToLua.Push(L, arg1);
+			}
+			else
+			{
+				LuaTable self = ToLua.CheckLuaTable(L, 2);
+				Delegate arg1 = DelegateTraits<FairyGUI.UIPackage.LoadResourceAsync>.Create(func, self);
 				ToLua.Push(L, arg1);
 			}
 			return 1;

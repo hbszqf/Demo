@@ -7,6 +7,7 @@ public class FairyGUI_GRootWrap
 	public static void Register(LuaState L)
 	{
 		L.BeginClass(typeof(FairyGUI.GRoot), typeof(FairyGUI.GComponent));
+		L.RegFunction("Dispose", Dispose);
 		L.RegFunction("SetContentScaleFactor", SetContentScaleFactor);
 		L.RegFunction("ApplyContentScaleFactor", ApplyContentScaleFactor);
 		L.RegFunction("ShowWindow", ShowWindow);
@@ -69,13 +70,36 @@ public class FairyGUI_GRootWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int Dispose(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 1);
+			FairyGUI.GRoot obj = (FairyGUI.GRoot)ToLua.CheckObject<FairyGUI.GRoot>(L, 1);
+			obj.Dispose();
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int SetContentScaleFactor(IntPtr L)
 	{
 		try
 		{
 			int count = LuaDLL.lua_gettop(L);
 
-			if (count == 3)
+			if (count == 2)
+			{
+				FairyGUI.GRoot obj = (FairyGUI.GRoot)ToLua.CheckObject<FairyGUI.GRoot>(L, 1);
+				float arg0 = (float)LuaDLL.luaL_checknumber(L, 2);
+				obj.SetContentScaleFactor(arg0);
+				return 0;
+			}
+			else if (count == 3)
 			{
 				FairyGUI.GRoot obj = (FairyGUI.GRoot)ToLua.CheckObject<FairyGUI.GRoot>(L, 1);
 				int arg0 = (int)LuaDLL.luaL_checknumber(L, 2);
@@ -329,8 +353,18 @@ public class FairyGUI_GRootWrap
 				FairyGUI.GRoot obj = (FairyGUI.GRoot)ToLua.CheckObject<FairyGUI.GRoot>(L, 1);
 				FairyGUI.GObject arg0 = (FairyGUI.GObject)ToLua.CheckObject<FairyGUI.GObject>(L, 2);
 				FairyGUI.GObject arg1 = (FairyGUI.GObject)ToLua.CheckObject<FairyGUI.GObject>(L, 3);
-				object arg2 = ToLua.ToVarObject(L, 4);
+				FairyGUI.PopupDirection arg2 = (FairyGUI.PopupDirection)ToLua.CheckObject(L, 4, typeof(FairyGUI.PopupDirection));
 				obj.ShowPopup(arg0, arg1, arg2);
+				return 0;
+			}
+			else if (count == 5)
+			{
+				FairyGUI.GRoot obj = (FairyGUI.GRoot)ToLua.CheckObject<FairyGUI.GRoot>(L, 1);
+				FairyGUI.GObject arg0 = (FairyGUI.GObject)ToLua.CheckObject<FairyGUI.GObject>(L, 2);
+				FairyGUI.GObject arg1 = (FairyGUI.GObject)ToLua.CheckObject<FairyGUI.GObject>(L, 3);
+				FairyGUI.PopupDirection arg2 = (FairyGUI.PopupDirection)ToLua.CheckObject(L, 4, typeof(FairyGUI.PopupDirection));
+				bool arg3 = LuaDLL.luaL_checkboolean(L, 5);
+				obj.ShowPopup(arg0, arg1, arg2, arg3);
 				return 0;
 			}
 			else
@@ -353,7 +387,7 @@ public class FairyGUI_GRootWrap
 			FairyGUI.GRoot obj = (FairyGUI.GRoot)ToLua.CheckObject<FairyGUI.GRoot>(L, 1);
 			FairyGUI.GObject arg0 = (FairyGUI.GObject)ToLua.CheckObject<FairyGUI.GObject>(L, 2);
 			FairyGUI.GObject arg1 = (FairyGUI.GObject)ToLua.CheckObject<FairyGUI.GObject>(L, 3);
-			object arg2 = ToLua.ToVarObject(L, 4);
+			FairyGUI.PopupDirection arg2 = (FairyGUI.PopupDirection)ToLua.CheckObject(L, 4, typeof(FairyGUI.PopupDirection));
 			UnityEngine.Vector2 o = obj.GetPoupPosition(arg0, arg1, arg2);
 			ToLua.Push(L, o);
 			return 1;
@@ -391,8 +425,18 @@ public class FairyGUI_GRootWrap
 				FairyGUI.GRoot obj = (FairyGUI.GRoot)ToLua.CheckObject<FairyGUI.GRoot>(L, 1);
 				FairyGUI.GObject arg0 = (FairyGUI.GObject)ToLua.CheckObject<FairyGUI.GObject>(L, 2);
 				FairyGUI.GObject arg1 = (FairyGUI.GObject)ToLua.CheckObject<FairyGUI.GObject>(L, 3);
-				object arg2 = ToLua.ToVarObject(L, 4);
+				FairyGUI.PopupDirection arg2 = (FairyGUI.PopupDirection)ToLua.CheckObject(L, 4, typeof(FairyGUI.PopupDirection));
 				obj.TogglePopup(arg0, arg1, arg2);
+				return 0;
+			}
+			else if (count == 5)
+			{
+				FairyGUI.GRoot obj = (FairyGUI.GRoot)ToLua.CheckObject<FairyGUI.GRoot>(L, 1);
+				FairyGUI.GObject arg0 = (FairyGUI.GObject)ToLua.CheckObject<FairyGUI.GObject>(L, 2);
+				FairyGUI.GObject arg1 = (FairyGUI.GObject)ToLua.CheckObject<FairyGUI.GObject>(L, 3);
+				FairyGUI.PopupDirection arg2 = (FairyGUI.PopupDirection)ToLua.CheckObject(L, 4, typeof(FairyGUI.PopupDirection));
+				bool arg3 = LuaDLL.luaL_checkboolean(L, 5);
+				obj.TogglePopup(arg0, arg1, arg2, arg3);
 				return 0;
 			}
 			else
@@ -442,11 +486,27 @@ public class FairyGUI_GRootWrap
 	{
 		try
 		{
-			ToLua.CheckArgsCount(L, 2);
-			FairyGUI.GRoot obj = (FairyGUI.GRoot)ToLua.CheckObject<FairyGUI.GRoot>(L, 1);
-			string arg0 = ToLua.CheckString(L, 2);
-			obj.ShowTooltips(arg0);
-			return 0;
+			int count = LuaDLL.lua_gettop(L);
+
+			if (count == 2)
+			{
+				FairyGUI.GRoot obj = (FairyGUI.GRoot)ToLua.CheckObject<FairyGUI.GRoot>(L, 1);
+				string arg0 = ToLua.CheckString(L, 2);
+				obj.ShowTooltips(arg0);
+				return 0;
+			}
+			else if (count == 3)
+			{
+				FairyGUI.GRoot obj = (FairyGUI.GRoot)ToLua.CheckObject<FairyGUI.GRoot>(L, 1);
+				string arg0 = ToLua.CheckString(L, 2);
+				float arg1 = (float)LuaDLL.luaL_checknumber(L, 3);
+				obj.ShowTooltips(arg0, arg1);
+				return 0;
+			}
+			else
+			{
+				return LuaDLL.luaL_throw(L, "invalid arguments to method: FairyGUI.GRoot.ShowTooltips");
+			}
 		}
 		catch (Exception e)
 		{
@@ -459,11 +519,27 @@ public class FairyGUI_GRootWrap
 	{
 		try
 		{
-			ToLua.CheckArgsCount(L, 2);
-			FairyGUI.GRoot obj = (FairyGUI.GRoot)ToLua.CheckObject<FairyGUI.GRoot>(L, 1);
-			FairyGUI.GObject arg0 = (FairyGUI.GObject)ToLua.CheckObject<FairyGUI.GObject>(L, 2);
-			obj.ShowTooltipsWin(arg0);
-			return 0;
+			int count = LuaDLL.lua_gettop(L);
+
+			if (count == 2)
+			{
+				FairyGUI.GRoot obj = (FairyGUI.GRoot)ToLua.CheckObject<FairyGUI.GRoot>(L, 1);
+				FairyGUI.GObject arg0 = (FairyGUI.GObject)ToLua.CheckObject<FairyGUI.GObject>(L, 2);
+				obj.ShowTooltipsWin(arg0);
+				return 0;
+			}
+			else if (count == 3)
+			{
+				FairyGUI.GRoot obj = (FairyGUI.GRoot)ToLua.CheckObject<FairyGUI.GRoot>(L, 1);
+				FairyGUI.GObject arg0 = (FairyGUI.GObject)ToLua.CheckObject<FairyGUI.GObject>(L, 2);
+				float arg1 = (float)LuaDLL.luaL_checknumber(L, 3);
+				obj.ShowTooltipsWin(arg0, arg1);
+				return 0;
+			}
+			else
+			{
+				return LuaDLL.luaL_throw(L, "invalid arguments to method: FairyGUI.GRoot.ShowTooltipsWin");
+			}
 		}
 		catch (Exception e)
 		{

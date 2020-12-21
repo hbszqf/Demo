@@ -39,7 +39,7 @@ namespace FairyGUI
             : base()
         {
             _uiSources = new List<IUISource>();
-            this.focusable = true;
+            this.tabStopChildren = true;
             bringToFontOnClick = UIConfig.bringWindowToFrontOnClick;
 
             displayObject.onAddedToStage.Add(__onShown);
@@ -389,6 +389,11 @@ namespace FairyGUI
 #if FAIRYGUI_TOLUA
             CallLua("OnInit");
 #endif
+#if FAIRYGUI_PUERTS
+            if (scriptInstance != null) {
+                scriptInstance.Call("OnInit");
+            }
+#endif
         }
 
         /// <summary>
@@ -398,6 +403,11 @@ namespace FairyGUI
         {
 #if FAIRYGUI_TOLUA
             CallLua("OnShown");
+#endif
+#if FAIRYGUI_PUERTS
+            if (scriptInstance != null) {
+                scriptInstance.Call("OnShown");
+            }
 #endif
         }
 
@@ -409,6 +419,11 @@ namespace FairyGUI
 #if FAIRYGUI_TOLUA
             CallLua("OnHide");
 #endif
+#if FAIRYGUI_PUERTS
+            if (scriptInstance != null) {
+                scriptInstance.Call("OnHide");
+            }
+#endif
         }
 
         /// <summary>
@@ -419,6 +434,10 @@ namespace FairyGUI
 #if FAIRYGUI_TOLUA
             if (!CallLua("DoShowAnimation"))
                 OnShown();
+#elif FAIRYGUI_PUERTS
+            if (scriptInstance == null || !scriptInstance.Call("DoShowAnimation")) {
+                OnShown();
+            }
 #else
             OnShown();
 #endif
@@ -432,6 +451,10 @@ namespace FairyGUI
 #if FAIRYGUI_TOLUA
             if (!CallLua("DoHideAnimation"))
                 HideImmediately();
+#elif FAIRYGUI_PUERTS
+            if (scriptInstance == null || !scriptInstance.Call("DoHideAnimation")) {
+                HideImmediately();
+            }
 #else
             HideImmediately();
 #endif
@@ -468,7 +491,7 @@ namespace FairyGUI
             base.Dispose();
         }
 
-        protected void closeEventHandler()
+        virtual protected void closeEventHandler(EventContext context)
         {
             Hide();
         }

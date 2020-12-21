@@ -286,8 +286,8 @@ public class FairyGUI_GTextFieldWrap
 		{
 			o = ToLua.ToObject(L, 1);
 			FairyGUI.GTextField obj = (FairyGUI.GTextField)o;
-			int ret = obj.stroke;
-			LuaDLL.lua_pushinteger(L, ret);
+			float ret = obj.stroke;
+			LuaDLL.lua_pushnumber(L, ret);
 			return 1;
 		}
 		catch(Exception e)
@@ -552,7 +552,7 @@ public class FairyGUI_GTextFieldWrap
 		{
 			o = ToLua.ToObject(L, 1);
 			FairyGUI.GTextField obj = (FairyGUI.GTextField)o;
-			int arg0 = (int)LuaDLL.luaL_checknumber(L, 2);
+			float arg0 = (float)LuaDLL.luaL_checknumber(L, 2);
 			obj.stroke = arg0;
 			return 0;
 		}

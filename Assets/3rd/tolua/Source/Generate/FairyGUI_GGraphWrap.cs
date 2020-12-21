@@ -187,7 +187,7 @@ public class FairyGUI_GGraphWrap
 				FairyGUI.GGraph obj = (FairyGUI.GGraph)ToLua.CheckObject<FairyGUI.GGraph>(L, 1);
 				float arg0 = (float)LuaDLL.luaL_checknumber(L, 2);
 				float arg1 = (float)LuaDLL.luaL_checknumber(L, 3);
-				UnityEngine.Vector2[] arg2 = ToLua.CheckStructArray<UnityEngine.Vector2>(L, 4);
+				System.Collections.Generic.IList<UnityEngine.Vector2> arg2 = (System.Collections.Generic.IList<UnityEngine.Vector2>)ToLua.CheckObject<System.Collections.Generic.IList<UnityEngine.Vector2>>(L, 4);
 				UnityEngine.Color arg3 = ToLua.ToColor(L, 5);
 				obj.DrawPolygon(arg0, arg1, arg2, arg3);
 				return 0;
@@ -197,7 +197,7 @@ public class FairyGUI_GGraphWrap
 				FairyGUI.GGraph obj = (FairyGUI.GGraph)ToLua.CheckObject<FairyGUI.GGraph>(L, 1);
 				float arg0 = (float)LuaDLL.luaL_checknumber(L, 2);
 				float arg1 = (float)LuaDLL.luaL_checknumber(L, 3);
-				UnityEngine.Vector2[] arg2 = ToLua.CheckStructArray<UnityEngine.Vector2>(L, 4);
+				System.Collections.Generic.IList<UnityEngine.Vector2> arg2 = (System.Collections.Generic.IList<UnityEngine.Vector2>)ToLua.CheckObject<System.Collections.Generic.IList<UnityEngine.Vector2>>(L, 4);
 				UnityEngine.Color arg3 = ToLua.ToColor(L, 5);
 				float arg4 = (float)LuaDLL.luaL_checknumber(L, 6);
 				UnityEngine.Color arg5 = ToLua.ToColor(L, 7);

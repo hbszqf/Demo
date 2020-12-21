@@ -165,7 +165,9 @@
   <string name="text427">欢迎页</string>
   <string name="text287">无法打开语言文件</string>
   <string name="text89">恢复默认布局</string>
-    
+  <string name="text471">切换显示网格</string>
+  <string name="text472">切换贴近到网格</string>
+
   <!-- Preview View -->
   <string name="text57">资源大小</string>
   <string name="text442">为组件生成预览</string>
@@ -439,8 +441,8 @@
   <string name="text298">插入帧</string>
   <string name="text218">删除帧</string>	
   <string name="text219">删除时间轴</string>	
-  <string name="text299">复制时间轴</string>
-  <string name="text300">粘贴时间轴</string>
+  <string name="text299">复制所有帧</string>
+  <string name="text300">粘贴帧</string>
   <string name="text340">更改目标对象</string>
   <string name="text220">时间轴非空，确实要删除吗？</string>
   <string name="text221">设置控制器</string>
@@ -586,6 +588,7 @@
   <string name="text464">已选择{0}个包</string>
   <string name="text465">查找重复的资源</string>
   <string name="text466">请选定多于一个需要合并的资源</string>
+  <string name="text473">重新载入所有插件</string>
 
-  <string name="text471"></string>
+  <string name="text474"></string>
 </resources>

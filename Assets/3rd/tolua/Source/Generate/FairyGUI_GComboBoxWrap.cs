@@ -7,6 +7,7 @@ public class FairyGUI_GComboBoxWrap
 	public static void Register(LuaState L)
 	{
 		L.BeginClass(typeof(FairyGUI.GComboBox), typeof(FairyGUI.GComponent));
+		L.RegFunction("ApplyListChange", ApplyListChange);
 		L.RegFunction("GetTextField", GetTextField);
 		L.RegFunction("HandleControllerChanged", HandleControllerChanged);
 		L.RegFunction("Dispose", Dispose);
@@ -25,6 +26,9 @@ public class FairyGUI_GComboBoxWrap
 		L.RegVar("items", get_items, set_items);
 		L.RegVar("icons", get_icons, set_icons);
 		L.RegVar("values", get_values, set_values);
+		L.RegVar("itemList", get_itemList, null);
+		L.RegVar("valueList", get_valueList, null);
+		L.RegVar("iconList", get_iconList, null);
 		L.RegVar("selectedIndex", get_selectedIndex, set_selectedIndex);
 		L.RegVar("selectionController", get_selectionController, set_selectionController);
 		L.RegVar("value", get_value, set_value);
@@ -49,6 +53,22 @@ public class FairyGUI_GComboBoxWrap
 			{
 				return LuaDLL.luaL_throw(L, "invalid arguments to ctor method: FairyGUI.GComboBox.New");
 			}
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int ApplyListChange(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 1);
+			FairyGUI.GComboBox obj = (FairyGUI.GComboBox)ToLua.CheckObject<FairyGUI.GComboBox>(L, 1);
+			obj.ApplyListChange();
+			return 0;
 		}
 		catch (Exception e)
 		{
@@ -346,6 +366,63 @@ public class FairyGUI_GComboBoxWrap
 		catch(Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e, o, "attempt to index values on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_itemList(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.GComboBox obj = (FairyGUI.GComboBox)o;
+			System.Collections.Generic.List<string> ret = obj.itemList;
+			ToLua.PushSealed(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index itemList on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_valueList(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.GComboBox obj = (FairyGUI.GComboBox)o;
+			System.Collections.Generic.List<string> ret = obj.valueList;
+			ToLua.PushSealed(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index valueList on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_iconList(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.GComboBox obj = (FairyGUI.GComboBox)o;
+			System.Collections.Generic.List<string> ret = obj.iconList;
+			ToLua.PushSealed(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index iconList on a nil value");
 		}
 	}
 

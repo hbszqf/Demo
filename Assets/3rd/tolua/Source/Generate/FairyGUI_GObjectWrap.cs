@@ -80,12 +80,13 @@ public class FairyGUI_GObjectWrap
 		L.RegVar("onDragMove", get_onDragMove, null);
 		L.RegVar("onDragEnd", get_onDragEnd, null);
 		L.RegVar("onGearStop", get_onGearStop, null);
+		L.RegVar("onFocusIn", get_onFocusIn, null);
+		L.RegVar("onFocusOut", get_onFocusOut, null);
 		L.RegVar("x", get_x, set_x);
 		L.RegVar("y", get_y, set_y);
 		L.RegVar("z", get_z, set_z);
 		L.RegVar("xy", get_xy, set_xy);
 		L.RegVar("position", get_position, set_position);
-		L.RegVar("pixelSnapping", get_pixelSnapping, set_pixelSnapping);
 		L.RegVar("width", get_width, set_width);
 		L.RegVar("height", get_height, set_height);
 		L.RegVar("size", get_size, set_size);
@@ -111,8 +112,10 @@ public class FairyGUI_GObjectWrap
 		L.RegVar("visible", get_visible, set_visible);
 		L.RegVar("sortingOrder", get_sortingOrder, set_sortingOrder);
 		L.RegVar("focusable", get_focusable, set_focusable);
+		L.RegVar("tabStop", get_tabStop, set_tabStop);
 		L.RegVar("focused", get_focused, null);
 		L.RegVar("tooltips", get_tooltips, set_tooltips);
+		L.RegVar("cursor", get_cursor, set_cursor);
 		L.RegVar("filter", get_filter, set_filter);
 		L.RegVar("blendMode", get_blendMode, set_blendMode);
 		L.RegVar("gameObjectName", get_gameObjectName, set_gameObjectName);
@@ -140,6 +143,7 @@ public class FairyGUI_GObjectWrap
 		L.RegVar("asRichTextField", get_asRichTextField, null);
 		L.RegVar("asTextInput", get_asTextInput, null);
 		L.RegVar("asLoader", get_asLoader, null);
+		L.RegVar("asLoader3D", get_asLoader3D, null);
 		L.RegVar("asList", get_asList, null);
 		L.RegVar("asGraph", get_asGraph, null);
 		L.RegVar("asGroup", get_asGroup, null);
@@ -367,10 +371,25 @@ public class FairyGUI_GObjectWrap
 	{
 		try
 		{
-			ToLua.CheckArgsCount(L, 1);
-			FairyGUI.GObject obj = (FairyGUI.GObject)ToLua.CheckObject<FairyGUI.GObject>(L, 1);
-			obj.RequestFocus();
-			return 0;
+			int count = LuaDLL.lua_gettop(L);
+
+			if (count == 1)
+			{
+				FairyGUI.GObject obj = (FairyGUI.GObject)ToLua.CheckObject<FairyGUI.GObject>(L, 1);
+				obj.RequestFocus();
+				return 0;
+			}
+			else if (count == 2)
+			{
+				FairyGUI.GObject obj = (FairyGUI.GObject)ToLua.CheckObject<FairyGUI.GObject>(L, 1);
+				bool arg0 = LuaDLL.luaL_checkboolean(L, 2);
+				obj.RequestFocus(arg0);
+				return 0;
+			}
+			else
+			{
+				return LuaDLL.luaL_throw(L, "invalid arguments to method: FairyGUI.GObject.RequestFocus");
+			}
 		}
 		catch (Exception e)
 		{
@@ -1622,6 +1641,44 @@ public class FairyGUI_GObjectWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_onFocusIn(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.GObject obj = (FairyGUI.GObject)o;
+			FairyGUI.EventListener ret = obj.onFocusIn;
+			ToLua.PushObject(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index onFocusIn on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_onFocusOut(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.GObject obj = (FairyGUI.GObject)o;
+			FairyGUI.EventListener ret = obj.onFocusOut;
+			ToLua.PushObject(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index onFocusOut on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int get_x(IntPtr L)
 	{
 		object o = null;
@@ -1713,25 +1770,6 @@ public class FairyGUI_GObjectWrap
 		catch(Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e, o, "attempt to index position on a nil value");
-		}
-	}
-
-	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int get_pixelSnapping(IntPtr L)
-	{
-		object o = null;
-
-		try
-		{
-			o = ToLua.ToObject(L, 1);
-			FairyGUI.GObject obj = (FairyGUI.GObject)o;
-			bool ret = obj.pixelSnapping;
-			LuaDLL.lua_pushboolean(L, ret);
-			return 1;
-		}
-		catch(Exception e)
-		{
-			return LuaDLL.toluaL_exception(L, e, o, "attempt to index pixelSnapping on a nil value");
 		}
 	}
 
@@ -2211,6 +2249,25 @@ public class FairyGUI_GObjectWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_tabStop(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.GObject obj = (FairyGUI.GObject)o;
+			bool ret = obj.tabStop;
+			LuaDLL.lua_pushboolean(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index tabStop on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int get_focused(IntPtr L)
 	{
 		object o = null;
@@ -2245,6 +2302,25 @@ public class FairyGUI_GObjectWrap
 		catch(Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e, o, "attempt to index tooltips on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_cursor(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.GObject obj = (FairyGUI.GObject)o;
+			string ret = obj.cursor;
+			LuaDLL.lua_pushstring(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index cursor on a nil value");
 		}
 	}
 
@@ -2762,6 +2838,25 @@ public class FairyGUI_GObjectWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_asLoader3D(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.GObject obj = (FairyGUI.GObject)o;
+			FairyGUI.GLoader3D ret = obj.asLoader3D;
+			ToLua.PushObject(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index asLoader3D on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int get_asList(IntPtr L)
 	{
 		object o = null;
@@ -3195,25 +3290,6 @@ public class FairyGUI_GObjectWrap
 		catch(Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e, o, "attempt to index position on a nil value");
-		}
-	}
-
-	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int set_pixelSnapping(IntPtr L)
-	{
-		object o = null;
-
-		try
-		{
-			o = ToLua.ToObject(L, 1);
-			FairyGUI.GObject obj = (FairyGUI.GObject)o;
-			bool arg0 = LuaDLL.luaL_checkboolean(L, 2);
-			obj.pixelSnapping = arg0;
-			return 0;
-		}
-		catch(Exception e)
-		{
-			return LuaDLL.toluaL_exception(L, e, o, "attempt to index pixelSnapping on a nil value");
 		}
 	}
 
@@ -3655,6 +3731,25 @@ public class FairyGUI_GObjectWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_tabStop(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.GObject obj = (FairyGUI.GObject)o;
+			bool arg0 = LuaDLL.luaL_checkboolean(L, 2);
+			obj.tabStop = arg0;
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index tabStop on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int set_tooltips(IntPtr L)
 	{
 		object o = null;
@@ -3670,6 +3765,25 @@ public class FairyGUI_GObjectWrap
 		catch(Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e, o, "attempt to index tooltips on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_cursor(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.GObject obj = (FairyGUI.GObject)o;
+			string arg0 = ToLua.CheckString(L, 2);
+			obj.cursor = arg0;
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index cursor on a nil value");
 		}
 	}
 

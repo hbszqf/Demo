@@ -9,6 +9,8 @@ public class FairyGUI_EventDispatcherWrap
 		L.BeginClass(typeof(FairyGUI.EventDispatcher), typeof(System.Object));
 		L.RegFunction("AddEventListener", AddEventListener);
 		L.RegFunction("RemoveEventListener", RemoveEventListener);
+		L.RegFunction("AddCapture", AddCapture);
+		L.RegFunction("RemoveCapture", RemoveCapture);
 		L.RegFunction("RemoveEventListeners", RemoveEventListeners);
 		L.RegFunction("hasEventListeners", hasEventListeners);
 		L.RegFunction("isDispatching", isDispatching);
@@ -105,6 +107,42 @@ public class FairyGUI_EventDispatcherWrap
 			{
 				return LuaDLL.luaL_throw(L, "invalid arguments to method: FairyGUI.EventDispatcher.RemoveEventListener");
 			}
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int AddCapture(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 3);
+			FairyGUI.EventDispatcher obj = (FairyGUI.EventDispatcher)ToLua.CheckObject<FairyGUI.EventDispatcher>(L, 1);
+			string arg0 = ToLua.CheckString(L, 2);
+			FairyGUI.EventCallback1 arg1 = (FairyGUI.EventCallback1)ToLua.CheckDelegate<FairyGUI.EventCallback1>(L, 3);
+			obj.AddCapture(arg0, arg1);
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int RemoveCapture(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 3);
+			FairyGUI.EventDispatcher obj = (FairyGUI.EventDispatcher)ToLua.CheckObject<FairyGUI.EventDispatcher>(L, 1);
+			string arg0 = ToLua.CheckString(L, 2);
+			FairyGUI.EventCallback1 arg1 = (FairyGUI.EventCallback1)ToLua.CheckDelegate<FairyGUI.EventCallback1>(L, 3);
+			obj.RemoveCapture(arg0, arg1);
+			return 0;
 		}
 		catch (Exception e)
 		{

@@ -17,11 +17,15 @@ public class FairyGUI_InputEventWrap
 		L.RegVar("mouseWheelDelta", get_mouseWheelDelta, null);
 		L.RegVar("touchId", get_touchId, null);
 		L.RegVar("button", get_button, null);
+		L.RegVar("clickCount", get_clickCount, null);
+		L.RegVar("holdTime", get_holdTime, null);
 		L.RegVar("position", get_position, null);
 		L.RegVar("isDoubleClick", get_isDoubleClick, null);
+		L.RegVar("ctrlOrCmd", get_ctrlOrCmd, null);
 		L.RegVar("ctrl", get_ctrl, null);
 		L.RegVar("shift", get_shift, null);
 		L.RegVar("alt", get_alt, null);
+		L.RegVar("command", get_command, null);
 		L.EndClass();
 	}
 
@@ -153,8 +157,8 @@ public class FairyGUI_InputEventWrap
 		{
 			o = ToLua.ToObject(L, 1);
 			FairyGUI.InputEvent obj = (FairyGUI.InputEvent)o;
-			int ret = obj.mouseWheelDelta;
-			LuaDLL.lua_pushinteger(L, ret);
+			float ret = obj.mouseWheelDelta;
+			LuaDLL.lua_pushnumber(L, ret);
 			return 1;
 		}
 		catch(Exception e)
@@ -202,6 +206,44 @@ public class FairyGUI_InputEventWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_clickCount(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.InputEvent obj = (FairyGUI.InputEvent)o;
+			int ret = obj.clickCount;
+			LuaDLL.lua_pushinteger(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index clickCount on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_holdTime(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.InputEvent obj = (FairyGUI.InputEvent)o;
+			float ret = obj.holdTime;
+			LuaDLL.lua_pushnumber(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index holdTime on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int get_position(IntPtr L)
 	{
 		object o = null;
@@ -236,6 +278,25 @@ public class FairyGUI_InputEventWrap
 		catch(Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e, o, "attempt to index isDoubleClick on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_ctrlOrCmd(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.InputEvent obj = (FairyGUI.InputEvent)o;
+			bool ret = obj.ctrlOrCmd;
+			LuaDLL.lua_pushboolean(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index ctrlOrCmd on a nil value");
 		}
 	}
 
@@ -293,6 +354,25 @@ public class FairyGUI_InputEventWrap
 		catch(Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e, o, "attempt to index alt on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_command(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.InputEvent obj = (FairyGUI.InputEvent)o;
+			bool ret = obj.command;
+			LuaDLL.lua_pushboolean(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index command on a nil value");
 		}
 	}
 }

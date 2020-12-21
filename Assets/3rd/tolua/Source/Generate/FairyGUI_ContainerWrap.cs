@@ -12,6 +12,7 @@ public class FairyGUI_ContainerWrap
 		L.RegFunction("Contains", Contains);
 		L.RegFunction("GetChildAt", GetChildAt);
 		L.RegFunction("GetChild", GetChild);
+		L.RegFunction("GetChildren", GetChildren);
 		L.RegFunction("GetChildIndex", GetChildIndex);
 		L.RegFunction("RemoveChild", RemoveChild);
 		L.RegFunction("RemoveChildAt", RemoveChildAt);
@@ -20,6 +21,8 @@ public class FairyGUI_ContainerWrap
 		L.RegFunction("SwapChildren", SwapChildren);
 		L.RegFunction("SwapChildrenAt", SwapChildrenAt);
 		L.RegFunction("ChangeChildrenOrder", ChangeChildrenOrder);
+		L.RegFunction("GetDescendants", GetDescendants);
+		L.RegFunction("CreateGraphics", CreateGraphics);
 		L.RegFunction("GetBounds", GetBounds);
 		L.RegFunction("GetRenderCamera", GetRenderCamera);
 		L.RegFunction("HitTest", HitTest);
@@ -36,13 +39,13 @@ public class FairyGUI_ContainerWrap
 		L.RegVar("clipSoftness", get_clipSoftness, set_clipSoftness);
 		L.RegVar("hitArea", get_hitArea, set_hitArea);
 		L.RegVar("touchChildren", get_touchChildren, set_touchChildren);
-		L.RegVar("onUpdate", get_onUpdate, set_onUpdate);
 		L.RegVar("reversedMask", get_reversedMask, set_reversedMask);
 		L.RegVar("numChildren", get_numChildren, null);
 		L.RegVar("clipRect", get_clipRect, set_clipRect);
 		L.RegVar("mask", get_mask, set_mask);
-		L.RegVar("touchable", get_touchable, set_touchable);
 		L.RegVar("fairyBatching", get_fairyBatching, set_fairyBatching);
+		L.RegVar("tabStopChildren", get_tabStopChildren, set_tabStopChildren);
+		L.RegVar("onUpdate", get_onUpdate, set_onUpdate);
 		L.EndClass();
 	}
 
@@ -167,6 +170,23 @@ public class FairyGUI_ContainerWrap
 			string arg0 = ToLua.CheckString(L, 2);
 			FairyGUI.DisplayObject o = obj.GetChild(arg0);
 			ToLua.PushObject(L, o);
+			return 1;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int GetChildren(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 1);
+			FairyGUI.Container obj = (FairyGUI.Container)ToLua.CheckObject<FairyGUI.Container>(L, 1);
+			FairyGUI.DisplayObject[] o = obj.GetChildren();
+			ToLua.Push(L, o);
 			return 1;
 		}
 		catch (Exception e)
@@ -357,9 +377,43 @@ public class FairyGUI_ContainerWrap
 		{
 			ToLua.CheckArgsCount(L, 3);
 			FairyGUI.Container obj = (FairyGUI.Container)ToLua.CheckObject<FairyGUI.Container>(L, 1);
-			System.Collections.Generic.List<int> arg0 = (System.Collections.Generic.List<int>)ToLua.CheckObject(L, 2, typeof(System.Collections.Generic.List<int>));
-			System.Collections.Generic.List<FairyGUI.DisplayObject> arg1 = (System.Collections.Generic.List<FairyGUI.DisplayObject>)ToLua.CheckObject(L, 3, typeof(System.Collections.Generic.List<FairyGUI.DisplayObject>));
+			System.Collections.Generic.IList<int> arg0 = (System.Collections.Generic.IList<int>)ToLua.CheckObject<System.Collections.Generic.IList<int>>(L, 2);
+			System.Collections.Generic.IList<FairyGUI.DisplayObject> arg1 = (System.Collections.Generic.IList<FairyGUI.DisplayObject>)ToLua.CheckObject<System.Collections.Generic.IList<FairyGUI.DisplayObject>>(L, 3);
 			obj.ChangeChildrenOrder(arg0, arg1);
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int GetDescendants(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 2);
+			FairyGUI.Container obj = (FairyGUI.Container)ToLua.CheckObject<FairyGUI.Container>(L, 1);
+			bool arg0 = LuaDLL.luaL_checkboolean(L, 2);
+			System.Collections.Generic.IEnumerator<FairyGUI.DisplayObject> o = obj.GetDescendants(arg0);
+			ToLua.PushObject(L, o);
+			return 1;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int CreateGraphics(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 1);
+			FairyGUI.Container obj = (FairyGUI.Container)ToLua.CheckObject<FairyGUI.Container>(L, 1);
+			obj.CreateGraphics();
 			return 0;
 		}
 		catch (Exception e)
@@ -408,31 +462,13 @@ public class FairyGUI_ContainerWrap
 	{
 		try
 		{
-			int count = LuaDLL.lua_gettop(L);
-
-			if (count == 3)
-			{
-				FairyGUI.Container obj = (FairyGUI.Container)ToLua.CheckObject<FairyGUI.Container>(L, 1);
-				UnityEngine.Vector2 arg0 = ToLua.ToVector2(L, 2);
-				bool arg1 = LuaDLL.luaL_checkboolean(L, 3);
-				FairyGUI.DisplayObject o = obj.HitTest(arg0, arg1);
-				ToLua.PushObject(L, o);
-				return 1;
-			}
-			else if (count == 4)
-			{
-				FairyGUI.Container obj = (FairyGUI.Container)ToLua.CheckObject<FairyGUI.Container>(L, 1);
-				UnityEngine.Vector2 arg0 = ToLua.ToVector2(L, 2);
-				bool arg1 = LuaDLL.luaL_checkboolean(L, 3);
-				int arg2 = (int)LuaDLL.luaL_checknumber(L, 4);
-				FairyGUI.DisplayObject o = obj.HitTest(arg0, arg1, arg2);
-				ToLua.PushObject(L, o);
-				return 1;
-			}
-			else
-			{
-				return LuaDLL.luaL_throw(L, "invalid arguments to method: FairyGUI.Container.HitTest");
-			}
+			ToLua.CheckArgsCount(L, 3);
+			FairyGUI.Container obj = (FairyGUI.Container)ToLua.CheckObject<FairyGUI.Container>(L, 1);
+			UnityEngine.Vector2 arg0 = ToLua.ToVector2(L, 2);
+			bool arg1 = LuaDLL.luaL_checkboolean(L, 3);
+			FairyGUI.DisplayObject o = obj.HitTest(arg0, arg1);
+			ToLua.PushObject(L, o);
+			return 1;
 		}
 		catch (Exception e)
 		{
@@ -654,25 +690,6 @@ public class FairyGUI_ContainerWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int get_onUpdate(IntPtr L)
-	{
-		object o = null;
-
-		try
-		{
-			o = ToLua.ToObject(L, 1);
-			FairyGUI.Container obj = (FairyGUI.Container)o;
-			FairyGUI.EventCallback0 ret = obj.onUpdate;
-			ToLua.Push(L, ret);
-			return 1;
-		}
-		catch(Exception e)
-		{
-			return LuaDLL.toluaL_exception(L, e, o, "attempt to index onUpdate on a nil value");
-		}
-	}
-
-	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int get_reversedMask(IntPtr L)
 	{
 		object o = null;
@@ -749,25 +766,6 @@ public class FairyGUI_ContainerWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int get_touchable(IntPtr L)
-	{
-		object o = null;
-
-		try
-		{
-			o = ToLua.ToObject(L, 1);
-			FairyGUI.Container obj = (FairyGUI.Container)o;
-			bool ret = obj.touchable;
-			LuaDLL.lua_pushboolean(L, ret);
-			return 1;
-		}
-		catch(Exception e)
-		{
-			return LuaDLL.toluaL_exception(L, e, o, "attempt to index touchable on a nil value");
-		}
-	}
-
-	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int get_fairyBatching(IntPtr L)
 	{
 		object o = null;
@@ -784,6 +782,32 @@ public class FairyGUI_ContainerWrap
 		{
 			return LuaDLL.toluaL_exception(L, e, o, "attempt to index fairyBatching on a nil value");
 		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_tabStopChildren(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.Container obj = (FairyGUI.Container)o;
+			bool ret = obj.tabStopChildren;
+			LuaDLL.lua_pushboolean(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index tabStopChildren on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_onUpdate(IntPtr L)
+	{
+		ToLua.Push(L, new EventObject(typeof(System.Action)));
+		return 1;
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
@@ -901,25 +925,6 @@ public class FairyGUI_ContainerWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int set_onUpdate(IntPtr L)
-	{
-		object o = null;
-
-		try
-		{
-			o = ToLua.ToObject(L, 1);
-			FairyGUI.Container obj = (FairyGUI.Container)o;
-			FairyGUI.EventCallback0 arg0 = (FairyGUI.EventCallback0)ToLua.CheckDelegate<FairyGUI.EventCallback0>(L, 2);
-			obj.onUpdate = arg0;
-			return 0;
-		}
-		catch(Exception e)
-		{
-			return LuaDLL.toluaL_exception(L, e, o, "attempt to index onUpdate on a nil value");
-		}
-	}
-
-	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int set_reversedMask(IntPtr L)
 	{
 		object o = null;
@@ -977,25 +982,6 @@ public class FairyGUI_ContainerWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int set_touchable(IntPtr L)
-	{
-		object o = null;
-
-		try
-		{
-			o = ToLua.ToObject(L, 1);
-			FairyGUI.Container obj = (FairyGUI.Container)o;
-			bool arg0 = LuaDLL.luaL_checkboolean(L, 2);
-			obj.touchable = arg0;
-			return 0;
-		}
-		catch(Exception e)
-		{
-			return LuaDLL.toluaL_exception(L, e, o, "attempt to index touchable on a nil value");
-		}
-	}
-
-	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int set_fairyBatching(IntPtr L)
 	{
 		object o = null;
@@ -1011,6 +997,61 @@ public class FairyGUI_ContainerWrap
 		catch(Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e, o, "attempt to index fairyBatching on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_tabStopChildren(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.Container obj = (FairyGUI.Container)o;
+			bool arg0 = LuaDLL.luaL_checkboolean(L, 2);
+			obj.tabStopChildren = arg0;
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index tabStopChildren on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_onUpdate(IntPtr L)
+	{
+		try
+		{
+			FairyGUI.Container obj = (FairyGUI.Container)ToLua.CheckObject(L, 1, typeof(FairyGUI.Container));
+			EventObject arg0 = null;
+
+			if (LuaDLL.lua_isuserdata(L, 2) != 0)
+			{
+				arg0 = (EventObject)ToLua.ToObject(L, 2);
+			}
+			else
+			{
+				return LuaDLL.luaL_throw(L, "The event 'FairyGUI.Container.onUpdate' can only appear on the left hand side of += or -= when used outside of the type 'FairyGUI.Container'");
+			}
+
+			if (arg0.op == EventOp.Add)
+			{
+				System.Action ev = (System.Action)arg0.func;
+				obj.onUpdate += ev;
+			}
+			else if (arg0.op == EventOp.Sub)
+			{
+				System.Action ev = (System.Action)arg0.func;
+				obj.onUpdate -= ev;
+			}
+
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
 		}
 	}
 }

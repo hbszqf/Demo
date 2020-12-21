@@ -22,6 +22,8 @@ public class FairyGUI_GListWrap
 		L.RegFunction("SelectAll", SelectAll);
 		L.RegFunction("SelectNone", SelectNone);
 		L.RegFunction("SelectReverse", SelectReverse);
+		L.RegFunction("EnableSelectionFocusEvents", EnableSelectionFocusEvents);
+		L.RegFunction("EnableArrowKeyNavigation", EnableArrowKeyNavigation);
 		L.RegFunction("HandleArrowKey", HandleArrowKey);
 		L.RegFunction("ResizeToFit", ResizeToFit);
 		L.RegFunction("HandleControllerChanged", HandleControllerChanged);
@@ -52,6 +54,7 @@ public class FairyGUI_GListWrap
 		L.RegVar("align", get_align, set_align);
 		L.RegVar("verticalAlign", get_verticalAlign, set_verticalAlign);
 		L.RegVar("autoResizeItem", get_autoResizeItem, set_autoResizeItem);
+		L.RegVar("defaultItemSize", get_defaultItemSize, set_defaultItemSize);
 		L.RegVar("itemPool", get_itemPool, null);
 		L.RegVar("selectedIndex", get_selectedIndex, set_selectedIndex);
 		L.RegVar("selectionController", get_selectionController, set_selectionController);
@@ -405,6 +408,40 @@ public class FairyGUI_GListWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int EnableSelectionFocusEvents(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 2);
+			FairyGUI.GList obj = (FairyGUI.GList)ToLua.CheckObject<FairyGUI.GList>(L, 1);
+			bool arg0 = LuaDLL.luaL_checkboolean(L, 2);
+			obj.EnableSelectionFocusEvents(arg0);
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int EnableArrowKeyNavigation(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 2);
+			FairyGUI.GList obj = (FairyGUI.GList)ToLua.CheckObject<FairyGUI.GList>(L, 1);
+			bool arg0 = LuaDLL.luaL_checkboolean(L, 2);
+			obj.EnableArrowKeyNavigation(arg0);
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int HandleArrowKey(IntPtr L)
 	{
 		try
@@ -412,8 +449,9 @@ public class FairyGUI_GListWrap
 			ToLua.CheckArgsCount(L, 2);
 			FairyGUI.GList obj = (FairyGUI.GList)ToLua.CheckObject<FairyGUI.GList>(L, 1);
 			int arg0 = (int)LuaDLL.luaL_checknumber(L, 2);
-			obj.HandleArrowKey(arg0);
-			return 0;
+			int o = obj.HandleArrowKey(arg0);
+			LuaDLL.lua_pushinteger(L, o);
+			return 1;
 		}
 		catch (Exception e)
 		{
@@ -428,7 +466,13 @@ public class FairyGUI_GListWrap
 		{
 			int count = LuaDLL.lua_gettop(L);
 
-			if (count == 2)
+			if (count == 1)
+			{
+				FairyGUI.GList obj = (FairyGUI.GList)ToLua.CheckObject<FairyGUI.GList>(L, 1);
+				obj.ResizeToFit();
+				return 0;
+			}
+			else if (count == 2)
 			{
 				FairyGUI.GList obj = (FairyGUI.GList)ToLua.CheckObject<FairyGUI.GList>(L, 1);
 				int arg0 = (int)LuaDLL.luaL_checknumber(L, 2);
@@ -955,6 +999,25 @@ public class FairyGUI_GListWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_defaultItemSize(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.GList obj = (FairyGUI.GList)o;
+			UnityEngine.Vector2 ret = obj.defaultItemSize;
+			ToLua.Push(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index defaultItemSize on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int get_itemPool(IntPtr L)
 	{
 		object o = null;
@@ -1331,6 +1394,25 @@ public class FairyGUI_GListWrap
 		catch(Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e, o, "attempt to index autoResizeItem on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_defaultItemSize(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.GList obj = (FairyGUI.GList)o;
+			UnityEngine.Vector2 arg0 = ToLua.ToVector2(L, 2);
+			obj.defaultItemSize = arg0;
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index defaultItemSize on a nil value");
 		}
 	}
 

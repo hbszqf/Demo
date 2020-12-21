@@ -29,6 +29,9 @@ public class FairyGUI_ScrollPaneWrap
 		L.RegFunction("UpdateScrollBarVisible", UpdateScrollBarVisible);
 		L.RegFunction("New", _CreateFairyGUI_ScrollPane);
 		L.RegFunction("__tostring", ToLua.op_ToString);
+		L.RegVar("TWEEN_TIME_GO", get_TWEEN_TIME_GO, set_TWEEN_TIME_GO);
+		L.RegVar("TWEEN_TIME_DEFAULT", get_TWEEN_TIME_DEFAULT, set_TWEEN_TIME_DEFAULT);
+		L.RegVar("PULL_RATIO", get_PULL_RATIO, set_PULL_RATIO);
 		L.RegVar("draggingPane", get_draggingPane, null);
 		L.RegVar("onScroll", get_onScroll, null);
 		L.RegVar("onScrollEnd", get_onScrollEnd, null);
@@ -551,6 +554,48 @@ public class FairyGUI_ScrollPaneWrap
 			FairyGUI.ScrollPane obj = (FairyGUI.ScrollPane)ToLua.CheckObject<FairyGUI.ScrollPane>(L, 1);
 			obj.UpdateScrollBarVisible();
 			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_TWEEN_TIME_GO(IntPtr L)
+	{
+		try
+		{
+			LuaDLL.lua_pushnumber(L, FairyGUI.ScrollPane.TWEEN_TIME_GO);
+			return 1;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_TWEEN_TIME_DEFAULT(IntPtr L)
+	{
+		try
+		{
+			LuaDLL.lua_pushnumber(L, FairyGUI.ScrollPane.TWEEN_TIME_DEFAULT);
+			return 1;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_PULL_RATIO(IntPtr L)
+	{
+		try
+		{
+			LuaDLL.lua_pushnumber(L, FairyGUI.ScrollPane.PULL_RATIO);
+			return 1;
 		}
 		catch (Exception e)
 		{
@@ -1215,6 +1260,51 @@ public class FairyGUI_ScrollPaneWrap
 		catch(Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e, o, "attempt to index viewHeight on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_TWEEN_TIME_GO(IntPtr L)
+	{
+		try
+		{
+			float arg0 = (float)LuaDLL.luaL_checknumber(L, 2);
+			FairyGUI.ScrollPane.TWEEN_TIME_GO = arg0;
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_TWEEN_TIME_DEFAULT(IntPtr L)
+	{
+		try
+		{
+			float arg0 = (float)LuaDLL.luaL_checknumber(L, 2);
+			FairyGUI.ScrollPane.TWEEN_TIME_DEFAULT = arg0;
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_PULL_RATIO(IntPtr L)
+	{
+		try
+		{
+			float arg0 = (float)LuaDLL.luaL_checknumber(L, 2);
+			FairyGUI.ScrollPane.PULL_RATIO = arg0;
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
 		}
 	}
 

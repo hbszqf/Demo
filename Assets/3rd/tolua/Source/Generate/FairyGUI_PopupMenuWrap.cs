@@ -6,7 +6,7 @@ public class FairyGUI_PopupMenuWrap
 {
 	public static void Register(LuaState L)
 	{
-		L.BeginClass(typeof(FairyGUI.PopupMenu), typeof(System.Object));
+		L.BeginClass(typeof(FairyGUI.PopupMenu), typeof(FairyGUI.EventDispatcher));
 		L.RegFunction("AddItem", AddItem);
 		L.RegFunction("AddItemAt", AddItemAt);
 		L.RegFunction("AddSeperator", AddSeperator);
@@ -16,13 +16,19 @@ public class FairyGUI_PopupMenuWrap
 		L.RegFunction("SetItemGrayed", SetItemGrayed);
 		L.RegFunction("SetItemCheckable", SetItemCheckable);
 		L.RegFunction("SetItemChecked", SetItemChecked);
-		L.RegFunction("isItemChecked", isItemChecked);
+		L.RegFunction("IsItemChecked", IsItemChecked);
 		L.RegFunction("RemoveItem", RemoveItem);
 		L.RegFunction("ClearItems", ClearItems);
 		L.RegFunction("Dispose", Dispose);
 		L.RegFunction("Show", Show);
+		L.RegFunction("Hide", Hide);
 		L.RegFunction("New", _CreateFairyGUI_PopupMenu);
 		L.RegFunction("__tostring", ToLua.op_ToString);
+		L.RegVar("visibleItemCount", get_visibleItemCount, set_visibleItemCount);
+		L.RegVar("hideOnClickItem", get_hideOnClickItem, set_hideOnClickItem);
+		L.RegVar("autoSize", get_autoSize, set_autoSize);
+		L.RegVar("onPopup", get_onPopup, null);
+		L.RegVar("onClose", get_onClose, null);
 		L.RegVar("itemCount", get_itemCount, null);
 		L.RegVar("contentPane", get_contentPane, null);
 		L.RegVar("list", get_list, null);
@@ -103,22 +109,22 @@ public class FairyGUI_PopupMenuWrap
 		{
 			int count = LuaDLL.lua_gettop(L);
 
-			if (count == 4 && TypeChecker.CheckTypes<FairyGUI.EventCallback0>(L, 4))
-			{
-				FairyGUI.PopupMenu obj = (FairyGUI.PopupMenu)ToLua.CheckObject<FairyGUI.PopupMenu>(L, 1);
-				string arg0 = ToLua.CheckString(L, 2);
-				int arg1 = (int)LuaDLL.luaL_checknumber(L, 3);
-				FairyGUI.EventCallback0 arg2 = (FairyGUI.EventCallback0)ToLua.ToObject(L, 4);
-				FairyGUI.GButton o = obj.AddItemAt(arg0, arg1, arg2);
-				ToLua.PushObject(L, o);
-				return 1;
-			}
-			else if (count == 4 && TypeChecker.CheckTypes<FairyGUI.EventCallback1>(L, 4))
+			if (count == 4 && TypeChecker.CheckTypes<FairyGUI.EventCallback1>(L, 4))
 			{
 				FairyGUI.PopupMenu obj = (FairyGUI.PopupMenu)ToLua.CheckObject<FairyGUI.PopupMenu>(L, 1);
 				string arg0 = ToLua.CheckString(L, 2);
 				int arg1 = (int)LuaDLL.luaL_checknumber(L, 3);
 				FairyGUI.EventCallback1 arg2 = (FairyGUI.EventCallback1)ToLua.ToObject(L, 4);
+				FairyGUI.GButton o = obj.AddItemAt(arg0, arg1, arg2);
+				ToLua.PushObject(L, o);
+				return 1;
+			}
+			else if (count == 4 && TypeChecker.CheckTypes<FairyGUI.EventCallback0>(L, 4))
+			{
+				FairyGUI.PopupMenu obj = (FairyGUI.PopupMenu)ToLua.CheckObject<FairyGUI.PopupMenu>(L, 1);
+				string arg0 = ToLua.CheckString(L, 2);
+				int arg1 = (int)LuaDLL.luaL_checknumber(L, 3);
+				FairyGUI.EventCallback0 arg2 = (FairyGUI.EventCallback0)ToLua.ToObject(L, 4);
 				FairyGUI.GButton o = obj.AddItemAt(arg0, arg1, arg2);
 				ToLua.PushObject(L, o);
 				return 1;
@@ -139,10 +145,25 @@ public class FairyGUI_PopupMenuWrap
 	{
 		try
 		{
-			ToLua.CheckArgsCount(L, 1);
-			FairyGUI.PopupMenu obj = (FairyGUI.PopupMenu)ToLua.CheckObject<FairyGUI.PopupMenu>(L, 1);
-			obj.AddSeperator();
-			return 0;
+			int count = LuaDLL.lua_gettop(L);
+
+			if (count == 1)
+			{
+				FairyGUI.PopupMenu obj = (FairyGUI.PopupMenu)ToLua.CheckObject<FairyGUI.PopupMenu>(L, 1);
+				obj.AddSeperator();
+				return 0;
+			}
+			else if (count == 2)
+			{
+				FairyGUI.PopupMenu obj = (FairyGUI.PopupMenu)ToLua.CheckObject<FairyGUI.PopupMenu>(L, 1);
+				int arg0 = (int)LuaDLL.luaL_checknumber(L, 2);
+				obj.AddSeperator(arg0);
+				return 0;
+			}
+			else
+			{
+				return LuaDLL.luaL_throw(L, "invalid arguments to method: FairyGUI.PopupMenu.AddSeperator");
+			}
 		}
 		catch (Exception e)
 		{
@@ -259,14 +280,14 @@ public class FairyGUI_PopupMenuWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int isItemChecked(IntPtr L)
+	static int IsItemChecked(IntPtr L)
 	{
 		try
 		{
 			ToLua.CheckArgsCount(L, 2);
 			FairyGUI.PopupMenu obj = (FairyGUI.PopupMenu)ToLua.CheckObject<FairyGUI.PopupMenu>(L, 1);
 			string arg0 = ToLua.CheckString(L, 2);
-			bool o = obj.isItemChecked(arg0);
+			bool o = obj.IsItemChecked(arg0);
 			LuaDLL.lua_pushboolean(L, o);
 			return 1;
 		}
@@ -284,9 +305,8 @@ public class FairyGUI_PopupMenuWrap
 			ToLua.CheckArgsCount(L, 2);
 			FairyGUI.PopupMenu obj = (FairyGUI.PopupMenu)ToLua.CheckObject<FairyGUI.PopupMenu>(L, 1);
 			string arg0 = ToLua.CheckString(L, 2);
-			bool o = obj.RemoveItem(arg0);
-			LuaDLL.lua_pushboolean(L, o);
-			return 1;
+			obj.RemoveItem(arg0);
+			return 0;
 		}
 		catch (Exception e)
 		{
@@ -339,12 +359,28 @@ public class FairyGUI_PopupMenuWrap
 				obj.Show();
 				return 0;
 			}
+			else if (count == 2)
+			{
+				FairyGUI.PopupMenu obj = (FairyGUI.PopupMenu)ToLua.CheckObject<FairyGUI.PopupMenu>(L, 1);
+				FairyGUI.GObject arg0 = (FairyGUI.GObject)ToLua.CheckObject<FairyGUI.GObject>(L, 2);
+				obj.Show(arg0);
+				return 0;
+			}
 			else if (count == 3)
 			{
 				FairyGUI.PopupMenu obj = (FairyGUI.PopupMenu)ToLua.CheckObject<FairyGUI.PopupMenu>(L, 1);
 				FairyGUI.GObject arg0 = (FairyGUI.GObject)ToLua.CheckObject<FairyGUI.GObject>(L, 2);
-				object arg1 = ToLua.ToVarObject(L, 3);
+				FairyGUI.PopupDirection arg1 = (FairyGUI.PopupDirection)ToLua.CheckObject(L, 3, typeof(FairyGUI.PopupDirection));
 				obj.Show(arg0, arg1);
+				return 0;
+			}
+			else if (count == 4)
+			{
+				FairyGUI.PopupMenu obj = (FairyGUI.PopupMenu)ToLua.CheckObject<FairyGUI.PopupMenu>(L, 1);
+				FairyGUI.GObject arg0 = (FairyGUI.GObject)ToLua.CheckObject<FairyGUI.GObject>(L, 2);
+				FairyGUI.PopupDirection arg1 = (FairyGUI.PopupDirection)ToLua.CheckObject(L, 3, typeof(FairyGUI.PopupDirection));
+				FairyGUI.PopupMenu arg2 = (FairyGUI.PopupMenu)ToLua.CheckObject<FairyGUI.PopupMenu>(L, 4);
+				obj.Show(arg0, arg1, arg2);
 				return 0;
 			}
 			else
@@ -355,6 +391,117 @@ public class FairyGUI_PopupMenuWrap
 		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int Hide(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 1);
+			FairyGUI.PopupMenu obj = (FairyGUI.PopupMenu)ToLua.CheckObject<FairyGUI.PopupMenu>(L, 1);
+			obj.Hide();
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_visibleItemCount(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.PopupMenu obj = (FairyGUI.PopupMenu)o;
+			int ret = obj.visibleItemCount;
+			LuaDLL.lua_pushinteger(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index visibleItemCount on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_hideOnClickItem(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.PopupMenu obj = (FairyGUI.PopupMenu)o;
+			bool ret = obj.hideOnClickItem;
+			LuaDLL.lua_pushboolean(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index hideOnClickItem on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_autoSize(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.PopupMenu obj = (FairyGUI.PopupMenu)o;
+			bool ret = obj.autoSize;
+			LuaDLL.lua_pushboolean(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index autoSize on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_onPopup(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.PopupMenu obj = (FairyGUI.PopupMenu)o;
+			FairyGUI.EventListener ret = obj.onPopup;
+			ToLua.PushObject(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index onPopup on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_onClose(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.PopupMenu obj = (FairyGUI.PopupMenu)o;
+			FairyGUI.EventListener ret = obj.onClose;
+			ToLua.PushObject(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index onClose on a nil value");
 		}
 	}
 
@@ -412,6 +559,63 @@ public class FairyGUI_PopupMenuWrap
 		catch(Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e, o, "attempt to index list on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_visibleItemCount(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.PopupMenu obj = (FairyGUI.PopupMenu)o;
+			int arg0 = (int)LuaDLL.luaL_checknumber(L, 2);
+			obj.visibleItemCount = arg0;
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index visibleItemCount on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_hideOnClickItem(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.PopupMenu obj = (FairyGUI.PopupMenu)o;
+			bool arg0 = LuaDLL.luaL_checkboolean(L, 2);
+			obj.hideOnClickItem = arg0;
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index hideOnClickItem on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_autoSize(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.PopupMenu obj = (FairyGUI.PopupMenu)o;
+			bool arg0 = LuaDLL.luaL_checkboolean(L, 2);
+			obj.autoSize = arg0;
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index autoSize on a nil value");
 		}
 	}
 }

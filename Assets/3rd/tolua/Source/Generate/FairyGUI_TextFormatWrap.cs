@@ -10,6 +10,7 @@ public class FairyGUI_TextFormatWrap
 		L.RegFunction("SetColor", SetColor);
 		L.RegFunction("EqualStyle", EqualStyle);
 		L.RegFunction("CopyFrom", CopyFrom);
+		L.RegFunction("FillVertexColors", FillVertexColors);
 		L.RegFunction("New", _CreateFairyGUI_TextFormat);
 		L.RegFunction("__tostring", ToLua.op_ToString);
 		L.RegVar("size", get_size, set_size);
@@ -20,9 +21,14 @@ public class FairyGUI_TextFormatWrap
 		L.RegVar("bold", get_bold, set_bold);
 		L.RegVar("underline", get_underline, set_underline);
 		L.RegVar("italic", get_italic, set_italic);
+		L.RegVar("strikethrough", get_strikethrough, set_strikethrough);
 		L.RegVar("gradientColor", get_gradientColor, set_gradientColor);
 		L.RegVar("align", get_align, set_align);
 		L.RegVar("specialStyle", get_specialStyle, set_specialStyle);
+		L.RegVar("outline", get_outline, set_outline);
+		L.RegVar("outlineColor", get_outlineColor, set_outlineColor);
+		L.RegVar("shadowOffset", get_shadowOffset, set_shadowOffset);
+		L.RegVar("shadowColor", get_shadowColor, set_shadowColor);
 		L.EndClass();
 	}
 
@@ -94,6 +100,23 @@ public class FairyGUI_TextFormatWrap
 			FairyGUI.TextFormat obj = (FairyGUI.TextFormat)ToLua.CheckObject<FairyGUI.TextFormat>(L, 1);
 			FairyGUI.TextFormat arg0 = (FairyGUI.TextFormat)ToLua.CheckObject<FairyGUI.TextFormat>(L, 2);
 			obj.CopyFrom(arg0);
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int FillVertexColors(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 2);
+			FairyGUI.TextFormat obj = (FairyGUI.TextFormat)ToLua.CheckObject<FairyGUI.TextFormat>(L, 1);
+			UnityEngine.Color32[] arg0 = ToLua.CheckStructArray<UnityEngine.Color32>(L, 2);
+			obj.FillVertexColors(arg0);
 			return 0;
 		}
 		catch (Exception e)
@@ -255,6 +278,25 @@ public class FairyGUI_TextFormatWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_strikethrough(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.TextFormat obj = (FairyGUI.TextFormat)o;
+			bool ret = obj.strikethrough;
+			LuaDLL.lua_pushboolean(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index strikethrough on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int get_gradientColor(IntPtr L)
 	{
 		object o = null;
@@ -308,6 +350,82 @@ public class FairyGUI_TextFormatWrap
 		catch(Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e, o, "attempt to index specialStyle on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_outline(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.TextFormat obj = (FairyGUI.TextFormat)o;
+			float ret = obj.outline;
+			LuaDLL.lua_pushnumber(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index outline on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_outlineColor(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.TextFormat obj = (FairyGUI.TextFormat)o;
+			UnityEngine.Color ret = obj.outlineColor;
+			ToLua.Push(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index outlineColor on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_shadowOffset(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.TextFormat obj = (FairyGUI.TextFormat)o;
+			UnityEngine.Vector2 ret = obj.shadowOffset;
+			ToLua.Push(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index shadowOffset on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_shadowColor(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.TextFormat obj = (FairyGUI.TextFormat)o;
+			UnityEngine.Color ret = obj.shadowColor;
+			ToLua.Push(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index shadowColor on a nil value");
 		}
 	}
 
@@ -464,6 +582,25 @@ public class FairyGUI_TextFormatWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_strikethrough(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.TextFormat obj = (FairyGUI.TextFormat)o;
+			bool arg0 = LuaDLL.luaL_checkboolean(L, 2);
+			obj.strikethrough = arg0;
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index strikethrough on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int set_gradientColor(IntPtr L)
 	{
 		object o = null;
@@ -517,6 +654,82 @@ public class FairyGUI_TextFormatWrap
 		catch(Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e, o, "attempt to index specialStyle on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_outline(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.TextFormat obj = (FairyGUI.TextFormat)o;
+			float arg0 = (float)LuaDLL.luaL_checknumber(L, 2);
+			obj.outline = arg0;
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index outline on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_outlineColor(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.TextFormat obj = (FairyGUI.TextFormat)o;
+			UnityEngine.Color arg0 = ToLua.ToColor(L, 2);
+			obj.outlineColor = arg0;
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index outlineColor on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_shadowOffset(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.TextFormat obj = (FairyGUI.TextFormat)o;
+			UnityEngine.Vector2 arg0 = ToLua.ToVector2(L, 2);
+			obj.shadowOffset = arg0;
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index shadowOffset on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_shadowColor(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.TextFormat obj = (FairyGUI.TextFormat)o;
+			UnityEngine.Color arg0 = ToLua.ToColor(L, 2);
+			obj.shadowColor = arg0;
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index shadowColor on a nil value");
 		}
 	}
 }

@@ -13,8 +13,6 @@ public class FairyGUI_GTextInputWrap
 		L.RegFunction("New", _CreateFairyGUI_GTextInput);
 		L.RegFunction("__tostring", ToLua.op_ToString);
 		L.RegVar("inputTextField", get_inputTextField, null);
-		L.RegVar("onFocusIn", get_onFocusIn, null);
-		L.RegVar("onFocusOut", get_onFocusOut, null);
 		L.RegVar("onChanged", get_onChanged, null);
 		L.RegVar("onSubmit", get_onSubmit, null);
 		L.RegVar("editable", get_editable, set_editable);
@@ -26,7 +24,13 @@ public class FairyGUI_GTextInputWrap
 		L.RegVar("promptText", get_promptText, set_promptText);
 		L.RegVar("keyboardInput", get_keyboardInput, set_keyboardInput);
 		L.RegVar("keyboardType", get_keyboardType, set_keyboardType);
+		L.RegVar("disableIME", get_disableIME, set_disableIME);
 		L.RegVar("emojies", get_emojies, set_emojies);
+		L.RegVar("border", get_border, set_border);
+		L.RegVar("corner", get_corner, set_corner);
+		L.RegVar("borderColor", get_borderColor, set_borderColor);
+		L.RegVar("backgroundColor", get_backgroundColor, set_backgroundColor);
+		L.RegVar("mouseWheelEnabled", get_mouseWheelEnabled, set_mouseWheelEnabled);
 		L.EndClass();
 	}
 
@@ -123,44 +127,6 @@ public class FairyGUI_GTextInputWrap
 		catch(Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e, o, "attempt to index inputTextField on a nil value");
-		}
-	}
-
-	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int get_onFocusIn(IntPtr L)
-	{
-		object o = null;
-
-		try
-		{
-			o = ToLua.ToObject(L, 1);
-			FairyGUI.GTextInput obj = (FairyGUI.GTextInput)o;
-			FairyGUI.EventListener ret = obj.onFocusIn;
-			ToLua.PushObject(L, ret);
-			return 1;
-		}
-		catch(Exception e)
-		{
-			return LuaDLL.toluaL_exception(L, e, o, "attempt to index onFocusIn on a nil value");
-		}
-	}
-
-	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int get_onFocusOut(IntPtr L)
-	{
-		object o = null;
-
-		try
-		{
-			o = ToLua.ToObject(L, 1);
-			FairyGUI.GTextInput obj = (FairyGUI.GTextInput)o;
-			FairyGUI.EventListener ret = obj.onFocusOut;
-			ToLua.PushObject(L, ret);
-			return 1;
-		}
-		catch(Exception e)
-		{
-			return LuaDLL.toluaL_exception(L, e, o, "attempt to index onFocusOut on a nil value");
 		}
 	}
 
@@ -374,6 +340,25 @@ public class FairyGUI_GTextInputWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_disableIME(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.GTextInput obj = (FairyGUI.GTextInput)o;
+			bool ret = obj.disableIME;
+			LuaDLL.lua_pushboolean(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index disableIME on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int get_emojies(IntPtr L)
 	{
 		object o = null;
@@ -389,6 +374,101 @@ public class FairyGUI_GTextInputWrap
 		catch(Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e, o, "attempt to index emojies on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_border(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.GTextInput obj = (FairyGUI.GTextInput)o;
+			int ret = obj.border;
+			LuaDLL.lua_pushinteger(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index border on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_corner(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.GTextInput obj = (FairyGUI.GTextInput)o;
+			int ret = obj.corner;
+			LuaDLL.lua_pushinteger(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index corner on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_borderColor(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.GTextInput obj = (FairyGUI.GTextInput)o;
+			UnityEngine.Color ret = obj.borderColor;
+			ToLua.Push(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index borderColor on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_backgroundColor(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.GTextInput obj = (FairyGUI.GTextInput)o;
+			UnityEngine.Color ret = obj.backgroundColor;
+			ToLua.Push(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index backgroundColor on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_mouseWheelEnabled(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.GTextInput obj = (FairyGUI.GTextInput)o;
+			bool ret = obj.mouseWheelEnabled;
+			LuaDLL.lua_pushboolean(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index mouseWheelEnabled on a nil value");
 		}
 	}
 
@@ -564,6 +644,25 @@ public class FairyGUI_GTextInputWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_disableIME(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.GTextInput obj = (FairyGUI.GTextInput)o;
+			bool arg0 = LuaDLL.luaL_checkboolean(L, 2);
+			obj.disableIME = arg0;
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index disableIME on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int set_emojies(IntPtr L)
 	{
 		object o = null;
@@ -579,6 +678,101 @@ public class FairyGUI_GTextInputWrap
 		catch(Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e, o, "attempt to index emojies on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_border(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.GTextInput obj = (FairyGUI.GTextInput)o;
+			int arg0 = (int)LuaDLL.luaL_checknumber(L, 2);
+			obj.border = arg0;
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index border on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_corner(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.GTextInput obj = (FairyGUI.GTextInput)o;
+			int arg0 = (int)LuaDLL.luaL_checknumber(L, 2);
+			obj.corner = arg0;
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index corner on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_borderColor(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.GTextInput obj = (FairyGUI.GTextInput)o;
+			UnityEngine.Color arg0 = ToLua.ToColor(L, 2);
+			obj.borderColor = arg0;
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index borderColor on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_backgroundColor(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.GTextInput obj = (FairyGUI.GTextInput)o;
+			UnityEngine.Color arg0 = ToLua.ToColor(L, 2);
+			obj.backgroundColor = arg0;
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index backgroundColor on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_mouseWheelEnabled(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.GTextInput obj = (FairyGUI.GTextInput)o;
+			bool arg0 = LuaDLL.luaL_checkboolean(L, 2);
+			obj.mouseWheelEnabled = arg0;
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index mouseWheelEnabled on a nil value");
 		}
 	}
 }

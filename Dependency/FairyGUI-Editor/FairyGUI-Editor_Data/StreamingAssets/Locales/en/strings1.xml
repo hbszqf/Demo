@@ -52,15 +52,19 @@
   <string name="2pshu6oiqilr7iuf1-n6_qilr" mz="auxline1">Show Border Dash Line</string>
   <string name="2pshu6oiqilr7iuf1-n7_qilr" mz="auxline2">Show alignment auxiliary line</string>
   <string name="2pshu6oiqilr7iuf1-n9_omhu" mz="docScaleOption">Each document uses a separate zoom ratio</string>
+  <string name="2pshu6oiqilr7iuf1-n10_12gvk" mz="showGrid">Show Grid</string>
+  <string name="2pshu6oiqilr7iuf1-n11_12gvk" mz="n11">Grid Size</string>
+  <string name="2pshu6oiqilr7iuf1-n13_12gvk" mz="snapToGrid">Snap To Grid</string>
+  <string name="2pshu6oiqilr7iuf1-n14_h39q" mz="n14">Brightness</string>
   <!-- Builder/ConsoleView.xml -->
   <string name="2pshu6oingyqa7iufv-n13_jrsv-tips" mz="btnCopy">Copy to Clipboard</string>
   <string name="2pshu6oingyqa7iufv-n5_qilr-tips" mz="btnClear">Clear</string>
   <!-- Builder/ConsoleView_item.xml -->
   <string name="2pshu6oingyqa7iufw-n0_ngyq" mz="title">text</string>
   <!-- Builder/CustomArrangePanel.xml -->
-  <string name="2pshu6oiau3n5i-n34" mz="n34">Line Gap</string>
-  <string name="2pshu6oiau3n5i-n35" mz="n35">Column Gap</string>
-  <string name="2pshu6oiau3n5i-n36" mz="n36">Column Count</string>
+  <string name="2pshu6oiau3n5i-n34" mz="n34">Row Gap</string>
+  <string name="2pshu6oiau3n5i-n35" mz="n35">Col Gap</string>
+  <string name="2pshu6oiau3n5i-n36" mz="n36">Col Count</string>
   <string name="2pshu6oiau3n5i-n49_ryaj" mz="ok">Arrange</string>
   <!-- Builder/DocumentView.xml -->
   <string name="2pshu6oiau3nh-n57-tips" mz="hand">Move Mode (Press and hold the space to quickly switch)</string>
@@ -355,8 +359,11 @@ Property name is alias or controller name.</string>
   <string name="2pshu6oiexa71nry31w-n16_et85" mz="n16">DisplayName</string>
   <string name="2pshu6oiexa71nry31w-n20_et85" mz="n20">Template</string>
   <string name="2pshu6oiexa71nry31w-n21_et85" mz="template">Blank</string>
-  <string name="2pshu6oiexa71nry31w-n21_et85-0" mz="template">Blank</string>
-  <string name="2pshu6oiexa71nry31w-n21_et85-1" mz="template">Generate Code</string>
+  <string name="2pshu6oiexa71nry31w-n21_et85-0" mz="template">Blank(Lua)</string>
+  <string name="2pshu6oiexa71nry31w-n21_et85-1" mz="template">Blank(JavaScript)</string>
+  <string name="2pshu6oiexa71nry31w-n21_et85-2" mz="template">Blank(TypeScript)</string>
+  <string name="2pshu6oiexa71nry31w-n21_et85-3" mz="template">Generate Code(Lua)</string>
+  <string name="2pshu6oiexa71nry31w-n21_et85-4" mz="template">Generate Code(TypeScript)</string>
   <string name="2pshu6oiexa71nry31w-n22_exa7" mz="n22">Description
 (Optional)</string>
   <string name="2pshu6oiexa71nry31w-n6" mz="ok">Create</string>
@@ -470,6 +477,19 @@ Up and down / left and right arrow buttons on the mobile device is not necessary
   <string name="2pshu6oilujbiudb-n108_lujb" mz="n108">Support Icon</string>
   <string name="2pshu6oilujbiudb-n6" mz="n6">Create</string>
   <string name="2pshu6oilujbiudb-n7" mz="n7">Cancel</string>
+  <!-- Builder/dialogs/CurveEditDialog.xml -->
+  <string name="2pshu6oieb4a1nry31x-n0_eb4a" mz="frame">Edit Curve</string>
+  <string name="2pshu6oieb4a1nry31x-n2_eb4a" mz="save">Save</string>
+  <string name="2pshu6oieb4a1nry31x-n3_eb4a" mz="apply">Apply</string>
+  <string name="2pshu6oieb4a1nry31x-n4_eb4a" mz="cancel">Cancel</string>
+  <string name="2pshu6oieb4a1nry31x-n14_eb4a" mz="n14">Reference: </string>
+  <string name="2pshu6oieb4a1nry31x-n16_eb4a-tips" mz="copy">Copy</string>
+  <string name="2pshu6oieb4a1nry31x-n17_eb4a-tips" mz="paste">Paste</string>
+  <string name="2pshu6oieb4a1nry31x-n20_eb4a-tips" mz="redo">Undo</string>
+  <string name="2pshu6oieb4a1nry31x-n21_eb4a-tips" mz="undo">Redo</string>
+  <!-- Builder/dialogs/CurveGraph.xml -->
+  <string name="2pshu6oieb4a1nry31y-n3_eb4a" mz="n3">progress</string>
+  <string name="2pshu6oieb4a1nry31y-n4_eb4a" mz="n4">time</string>
   <!-- Builder/dialogs/DownloadDialog.xml -->
   <string name="2pshu6oi104iu63-n1" mz="frame">Upgrade</string>
   <string name="2pshu6oi104iu63-n2" mz="btnInstall">Install Now</string>
@@ -800,11 +820,12 @@ Use value here</string>
   <string name="2pshu6oix3927iuev-n195_as27" mz="n195">Branch Path</string>
   <string name="2pshu6oix3927iuev-n132_x392" mz="pathOption">Use Global Settings</string>
   <string name="2pshu6oix3927iuev-n177_x392-tips" mz="n177">Supported variables:
-Global Path - {global_path} 
+Branch Name - {branch_name} 
 File Name - {publish_file_name}</string>
   <string name="2pshu6oix3927iuev-n197_as27-tips" mz="n197">The path can be set to a relative publishing path. Leaving blank means using the publishing path directly.
 Supported variables:
-Branch Name - {branch}</string>
+Branch Name - {branch_name}
+File Name - {publish_file_name}</string>
   <string name="2pshu6oix3927iuev-n174_x392" mz="twoPackages">Two Packages</string>
   <string name="2pshu6oix3927iuev-n143_x392" mz="atlas_bar">Atlas</string>
   <string name="2pshu6oix3927iuev-n187_oakd" mz="n187">Max Size</string>
@@ -861,6 +882,8 @@ FairyGUI provides special mixed shader.</string>
   <string name="2pshu6oiau3n5c-n0" mz="frame">Replacing Element</string>
   <string name="2pshu6oiau3n5c-n1" mz="ok">OK</string>
   <string name="2pshu6oiau3n5c-n6" mz="cancel">Cancel</string>
+  <string name="2pshu6oiau3n5c-n15_li0v" mz="n15">Standard: </string>
+  <string name="2pshu6oiau3n5c-n16_li0v" mz="n16">History: </string>
   <!-- Builder/dialogs/SaveConfirmDialog.xml -->
   <string name="2pshu6oiau3n3k-n6" mz="n6">Do you want to save changes to the following items?</string>
   <string name="2pshu6oiau3n3k-n2" mz="btnYes">Yes</string>
@@ -872,6 +895,15 @@ FairyGUI provides special mixed shader.</string>
   <string name="2pshu6oiorb8iu93-n8" mz="n8">Vertical</string>
   <string name="2pshu6oiorb8iu93-n1" mz="n1">OK</string>
   <string name="2pshu6oiorb8iu93-n6" mz="n6">Cancel</string>
+  <!-- Builder/dialogs/SkeletonInfoDialog.xml -->
+  <string name="2pshu6oinqun1nry329-n0" mz="frame">Skeleton Info</string>
+  <string name="2pshu6oinqun1nry329-n3" mz="n3">Shader</string>
+  <string name="2pshu6oinqun1nry329-n30_zsu0" mz="pma">Premultiplied Alpha</string>
+  <string name="2pshu6oinqun1nry329-n33_cp0j" mz="n33">Size</string>
+  <string name="2pshu6oinqun1nry329-n36_cp0j" mz="n36">Anchor</string>
+  <string name="2pshu6oinqun1nry329-n9" mz="save">Save</string>
+  <string name="2pshu6oinqun1nry329-n10" mz="cancel">Cancel</string>
+  <string name="2pshu6oinqun1nry329-n38_cp0j" mz="reset">Reset</string>
   <!-- Builder/dialogs/StringsFunctionDialog.xml -->
   <string name="2pshu6oioqvzu6k-n0" mz="frame">String import and export</string>
   <string name="2pshu6oioqvzu6k-n43" mz="next">Next</string>
@@ -895,8 +927,12 @@ FairyGUI provides special mixed shader.</string>
   <string name="2pshu6oiyaznixicvp-n29-1" mz="renderMode">SDFAA</string>
   <string name="2pshu6oiyaznixicvp-n29-2" mz="renderMode">Hinted Raster</string>
   <string name="2pshu6oiyaznixicvp-n29-3" mz="renderMode">SDFAA</string>
+  <string name="2pshu6oiyaznixicvp-n32_ws7c" mz="n32">Italic Style</string>
+  <string name="2pshu6oiyaznixicvp-n34_ws7c" mz="n34">Bold Weight</string>
+  <string name="2pshu6oiyaznixicvp-n38_cp0j" mz="n38">Atlas Padding</string>
   <string name="2pshu6oiyaznixicvp-n9" mz="save">Save</string>
   <string name="2pshu6oiyaznixicvp-n10" mz="cancel">Close</string>
+  <string name="2pshu6oiyaznixicvp-n40_cp0j" mz="reset">Reset</string>
   <!-- Builder/dialogs/TextInputDialog.xml -->
   <string name="2pshu6oio213iucx-n0" mz="frame">Input text</string>
   <string name="2pshu6oio213iucx-n40" mz="ok">OK</string>
@@ -968,6 +1004,8 @@ The design is visible only in the design phase and will not be published in the 
   <string name="2pshu6oirladixicuf-n53_rlad" mz="n53">Custom Props.</string>
   <string name="2pshu6oirladixicuf-n54_rlad" mz="editCustomProps">Edit...</string>
   <string name="2pshu6oirladixicuf-n49_sqzs" mz="n49">Custom Data</string>
+  <string name="2pshu6oirladixicuf-n59_mbaw" mz="n59">Enter Sound</string>
+  <string name="2pshu6oirladixicuf-n61_mbaw" mz="n61">Exit Sound</string>
   <!-- Builder/inspectors/ComPropsPanel.xml -->
   <string name="2pshu6oiau3n47-n24" mz="n24">Size</string>
   <string name="2pshu6oiau3n47-n128_r1st" mz="n128">Min Size</string>
@@ -1006,6 +1044,7 @@ The design is visible only in the design phase and will not be published in the 
   <string name="2pshu6oiwzy5u7a-n105" mz="n105">Repeat</string>
   <string name="2pshu6oiwzy5u7a-n127" mz="n127">(-1=infinite loop)</string>
   <string name="2pshu6oiwzy5u7a-n104" mz="yoyo">yoyo</string>
+  <string name="2pshu6oiwzy5u7a-n130_eb4a-tips" mz="curveEdit">Edit Curve</string>
   <!-- Builder/inspectors/FrameValuePropsPanel.xml -->
   <string name="2pshu6oiqkqy7iue4-n79" mz="xEnabled">X</string>
   <string name="2pshu6oiqkqy7iue4-n80" mz="yEnabled">Y</string>
@@ -1159,6 +1198,7 @@ The design is visible only in the design phase and will not be published in the 
   <!-- Builder/inspectors/RelationPropsItem.xml -->
   <string name="2pshu6oiau3n4i-n18_goxz" mz="n18">Container</string>
   <string name="2pshu6oiau3n4i-n17_r1st-tips" mz="sizeRelation">Set size relation</string>
+  <string name="2pshu6oiau3n4i-n20_zsu0-tips" mz="centerRelation">Set center relation</string>
   <!-- Builder/inspectors/RelationPropsPanel.xml -->
   <string name="2pshu6oiau3n4a-n52_gj1q" mz="add">Add</string>
   <!-- Builder/inspectors/RelationTypePopup.xml -->
@@ -1263,13 +1303,11 @@ Restoration control after transition is complete.</string>
   <string name="2pshu6oiau3n4r-n59" mz="n59">Icon</string>
   <string name="2pshu6oiau3n4r-n61" mz="n61">SelectedIcon</string>
   <string name="2pshu6oiau3n4r-n85" mz="n85">Sound</string>
-  <string name="2pshu6oiau3n4r-n86" mz="n86">Volume</string>
   <string name="2pshu6oiau3n4r-n63" mz="n63">Connect</string>
   <string name="2pshu6oiau3n4r-n51" mz="selected">Selected</string>
   <!-- Builder/inspectors/extention/ButtonPropsPanel2.xml -->
   <string name="2pshu6oiau3n4k-n47" mz="n47">Mode</string>
   <string name="2pshu6oiau3n4k-n71" mz="n71">Sound</string>
-  <string name="2pshu6oiau3n4k-n73" mz="n73">Volume</string>
   <string name="2pshu6oiau3n4k-n86" mz="n86">Down Effect</string>
   <string name="2pshu6oiau3n4k-n88_gwcn-tips" mz="n88">Naming conventions 
 button: name of the button controller.
@@ -1280,13 +1318,14 @@ icon: name of the icon object(usually a loader).</string>
   <string name="2pshu6oiau3n4t-n80" mz="n80">Icon</string>
   <string name="2pshu6oiau3n4t-n75" mz="n75">View Count</string>
   <string name="2pshu6oiau3n4t-n78" mz="n78">Popup</string>
-  <string name="2pshu6oiau3n4t-n85_e4se" mz="n85">Selection Ctrl</string>
   <string name="2pshu6oiau3n4t-n72" mz="titleColorSet">Color</string>
   <string name="2pshu6oiau3n4t-n79" mz="direction">Auto</string>
   <string name="2pshu6oiau3n4t-n79-0" mz="direction">Auto</string>
   <string name="2pshu6oiau3n4t-n79-1" mz="direction">Up</string>
   <string name="2pshu6oiau3n4t-n79-2" mz="direction">Down</string>
   <string name="2pshu6oiau3n4t-n77" mz="n77">Edit items</string>
+  <string name="2pshu6oiau3n4t-n85_e4se" mz="n85">Selection Ctrl</string>
+  <string name="2pshu6oiau3n4t-n93_mbaw" mz="n93">Sound</string>
   <!-- Builder/inspectors/extention/ComboBoxPropsPanel2.xml -->
   <string name="2pshu6oiau3n4s-n47" mz="n47">Popup</string>
   <string name="2pshu6oiau3n4s-n71_e0th-tips" mz="n71">Naming conventions
@@ -1301,6 +1340,7 @@ list: name of the list in the popup component.</string>
   <string name="2pshu6oiau3n51-n72" mz="n72">Color</string>
   <string name="2pshu6oiau3n51-n73" mz="n73">FontSize</string>
   <string name="2pshu6oiau3n51-n59" mz="n59">Icon</string>
+  <string name="2pshu6oiau3n51-n74_mbaw" mz="n74">Sound</string>
   <!-- Builder/inspectors/extention/LabelPropsPanel2.xml -->
   <string name="2pshu6oiau3n50-n48_e0th-tips" mz="n48">Naming conventions
 title: name of the title object.
@@ -1313,6 +1353,7 @@ contentArea: name of the main content area(usually a blank graph) in the window.
   <string name="2pshu6oiau3n4v-n78_vdln" mz="n78">Min</string>
   <string name="2pshu6oiau3n4v-n76_vdln" mz="n76">Max</string>
   <string name="2pshu6oiau3n4v-n74_vdln" mz="n74">Current</string>
+  <string name="2pshu6oiau3n4v-n80_mbaw" mz="n80">Sound</string>
   <!-- Builder/inspectors/extention/ProgressBarPropsPanel2.xml -->
   <string name="2pshu6oiau3n4u-n47" mz="n47">Title Type</string>
   <string name="2pshu6oiau3n4u-n70" mz="reverse">Reverse</string>
@@ -1355,6 +1396,7 @@ ani: name of the animation.</string>
   <string name="2pshu6oijcdgu7r-n9" mz="n9">Duration</string>
   <string name="2pshu6oijcdgu7r-n11" mz="n11">Delay</string>
   <string name="2pshu6oijcdgu7r-n5" mz="n5">Ease</string>
+  <string name="2pshu6oijcdgu7r-n13_eb4a-tips" mz="curveEdit">Edit Curve</string>
   <!-- Builder/inspectors/popup/InputPropsPanel.xml -->
   <string name="2pshu6oipb9oiu8p-n34" mz="n34">Max Chars</string>
   <string name="2pshu6oipb9oiu8p-n36" mz="n36">Restrict</string>

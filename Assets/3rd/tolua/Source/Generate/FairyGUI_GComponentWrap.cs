@@ -26,6 +26,7 @@ public class FairyGUI_GComponentWrap
 		L.RegFunction("SwapChildren", SwapChildren);
 		L.RegFunction("SwapChildrenAt", SwapChildrenAt);
 		L.RegFunction("IsAncestorOf", IsAncestorOf);
+		L.RegFunction("ChangeChildrenOrder", ChangeChildrenOrder);
 		L.RegFunction("AddController", AddController);
 		L.RegFunction("GetControllerAt", GetControllerAt);
 		L.RegFunction("GetController", GetController);
@@ -52,6 +53,7 @@ public class FairyGUI_GComponentWrap
 		L.RegVar("margin", get_margin, set_margin);
 		L.RegVar("childrenRenderOrder", get_childrenRenderOrder, set_childrenRenderOrder);
 		L.RegVar("apexIndex", get_apexIndex, set_apexIndex);
+		L.RegVar("tabStopChildren", get_tabStopChildren, set_tabStopChildren);
 		L.RegVar("numChildren", get_numChildren, null);
 		L.RegVar("Controllers", get_Controllers, null);
 		L.RegVar("clipSoftness", get_clipSoftness, set_clipSoftness);
@@ -492,6 +494,23 @@ public class FairyGUI_GComponentWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int ChangeChildrenOrder(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 2);
+			FairyGUI.GComponent obj = (FairyGUI.GComponent)ToLua.CheckObject<FairyGUI.GComponent>(L, 1);
+			System.Collections.Generic.IList<FairyGUI.GObject> arg0 = (System.Collections.Generic.IList<FairyGUI.GObject>)ToLua.CheckObject<System.Collections.Generic.IList<FairyGUI.GObject>>(L, 2);
+			obj.ChangeChildrenOrder(arg0);
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int AddController(IntPtr L)
 	{
 		try
@@ -921,6 +940,25 @@ public class FairyGUI_GComponentWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_tabStopChildren(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.GComponent obj = (FairyGUI.GComponent)o;
+			bool ret = obj.tabStopChildren;
+			LuaDLL.lua_pushboolean(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index tabStopChildren on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int get_numChildren(IntPtr L)
 	{
 		object o = null;
@@ -1164,6 +1202,25 @@ public class FairyGUI_GComponentWrap
 		catch(Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e, o, "attempt to index apexIndex on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_tabStopChildren(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.GComponent obj = (FairyGUI.GComponent)o;
+			bool arg0 = LuaDLL.luaL_checkboolean(L, 2);
+			obj.tabStopChildren = arg0;
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index tabStopChildren on a nil value");
 		}
 	}
 

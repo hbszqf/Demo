@@ -32,6 +32,11 @@ local function genCode(handler)
             writer:writeln()
         end
 
+        if handler.project.type==ProjectType.ThreeJS then
+            writer:writeln('import * as fgui from "fairygui-three";');
+            if refCount==0 then writer:writeln() end
+        end
+
         writer:writeln('export default class %s extends %s', classInfo.className, classInfo.superClassName)
         writer:startBlock()
         writer:writeln()
@@ -90,6 +95,11 @@ local function genCode(handler)
         writer:writeln('import %s from "./%s";', classInfo.className, classInfo.className)
     end
 
+    if handler.project.type==ProjectType.ThreeJS then
+        writer:writeln('import * as fgui from "fairygui-three";');
+        writer:writeln();
+    end
+    
     writer:writeln()
     writer:writeln('export default class %s', binderName)
     writer:startBlock()

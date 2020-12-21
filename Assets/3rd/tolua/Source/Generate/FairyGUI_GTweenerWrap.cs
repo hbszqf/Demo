@@ -127,12 +127,29 @@ public class FairyGUI_GTweenerWrap
 	{
 		try
 		{
-			ToLua.CheckArgsCount(L, 2);
-			FairyGUI.GTweener obj = (FairyGUI.GTweener)ToLua.CheckObject<FairyGUI.GTweener>(L, 1);
-			FairyGUI.EaseType arg0 = (FairyGUI.EaseType)ToLua.CheckObject(L, 2, typeof(FairyGUI.EaseType));
-			FairyGUI.GTweener o = obj.SetEase(arg0);
-			ToLua.PushObject(L, o);
-			return 1;
+			int count = LuaDLL.lua_gettop(L);
+
+			if (count == 2)
+			{
+				FairyGUI.GTweener obj = (FairyGUI.GTweener)ToLua.CheckObject<FairyGUI.GTweener>(L, 1);
+				FairyGUI.EaseType arg0 = (FairyGUI.EaseType)ToLua.CheckObject(L, 2, typeof(FairyGUI.EaseType));
+				FairyGUI.GTweener o = obj.SetEase(arg0);
+				ToLua.PushObject(L, o);
+				return 1;
+			}
+			else if (count == 3)
+			{
+				FairyGUI.GTweener obj = (FairyGUI.GTweener)ToLua.CheckObject<FairyGUI.GTweener>(L, 1);
+				FairyGUI.EaseType arg0 = (FairyGUI.EaseType)ToLua.CheckObject(L, 2, typeof(FairyGUI.EaseType));
+				FairyGUI.CustomEase arg1 = (FairyGUI.CustomEase)ToLua.CheckObject<FairyGUI.CustomEase>(L, 3);
+				FairyGUI.GTweener o = obj.SetEase(arg0, arg1);
+				ToLua.PushObject(L, o);
+				return 1;
+			}
+			else
+			{
+				return LuaDLL.luaL_throw(L, "invalid arguments to method: FairyGUI.GTweener.SetEase");
+			}
 		}
 		catch (Exception e)
 		{

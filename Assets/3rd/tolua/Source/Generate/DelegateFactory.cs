@@ -39,7 +39,9 @@ public class DelegateFactory
 		dict.Add(typeof(FairyGUI.ListItemProvider), factory.FairyGUI_ListItemProvider);
 		dict.Add(typeof(FairyGUI.PlayCompleteCallback), factory.FairyGUI_PlayCompleteCallback);
 		dict.Add(typeof(FairyGUI.TransitionHook), factory.FairyGUI_TransitionHook);
+		dict.Add(typeof(System.Action<FairyGUI.PackageItem>), factory.System_Action_FairyGUI_PackageItem);
 		dict.Add(typeof(FairyGUI.UIPackage.LoadResource), factory.FairyGUI_UIPackage_LoadResource);
+		dict.Add(typeof(FairyGUI.UIPackage.LoadResourceAsync), factory.FairyGUI_UIPackage_LoadResourceAsync);
 		dict.Add(typeof(FairyGUI.UIPackage.CreateObjectCallback), factory.FairyGUI_UIPackage_CreateObjectCallback);
 		dict.Add(typeof(FairyGUI.GObjectPool.InitCallbackDelegate), factory.FairyGUI_GObjectPool_InitCallbackDelegate);
 		dict.Add(typeof(FairyGUI.TimerCallback), factory.FairyGUI_TimerCallback);
@@ -70,7 +72,9 @@ public class DelegateFactory
 		DelegateTraits<FairyGUI.ListItemProvider>.Init(factory.FairyGUI_ListItemProvider);
 		DelegateTraits<FairyGUI.PlayCompleteCallback>.Init(factory.FairyGUI_PlayCompleteCallback);
 		DelegateTraits<FairyGUI.TransitionHook>.Init(factory.FairyGUI_TransitionHook);
+		DelegateTraits<System.Action<FairyGUI.PackageItem>>.Init(factory.System_Action_FairyGUI_PackageItem);
 		DelegateTraits<FairyGUI.UIPackage.LoadResource>.Init(factory.FairyGUI_UIPackage_LoadResource);
+		DelegateTraits<FairyGUI.UIPackage.LoadResourceAsync>.Init(factory.FairyGUI_UIPackage_LoadResourceAsync);
 		DelegateTraits<FairyGUI.UIPackage.CreateObjectCallback>.Init(factory.FairyGUI_UIPackage_CreateObjectCallback);
 		DelegateTraits<FairyGUI.GObjectPool.InitCallbackDelegate>.Init(factory.FairyGUI_GObjectPool_InitCallbackDelegate);
 		DelegateTraits<FairyGUI.TimerCallback>.Init(factory.FairyGUI_TimerCallback);
@@ -101,7 +105,9 @@ public class DelegateFactory
 		TypeTraits<FairyGUI.ListItemProvider>.Init(factory.Check_FairyGUI_ListItemProvider);
 		TypeTraits<FairyGUI.PlayCompleteCallback>.Init(factory.Check_FairyGUI_PlayCompleteCallback);
 		TypeTraits<FairyGUI.TransitionHook>.Init(factory.Check_FairyGUI_TransitionHook);
+		TypeTraits<System.Action<FairyGUI.PackageItem>>.Init(factory.Check_System_Action_FairyGUI_PackageItem);
 		TypeTraits<FairyGUI.UIPackage.LoadResource>.Init(factory.Check_FairyGUI_UIPackage_LoadResource);
+		TypeTraits<FairyGUI.UIPackage.LoadResourceAsync>.Init(factory.Check_FairyGUI_UIPackage_LoadResourceAsync);
 		TypeTraits<FairyGUI.UIPackage.CreateObjectCallback>.Init(factory.Check_FairyGUI_UIPackage_CreateObjectCallback);
 		TypeTraits<FairyGUI.GObjectPool.InitCallbackDelegate>.Init(factory.Check_FairyGUI_GObjectPool_InitCallbackDelegate);
 		TypeTraits<FairyGUI.TimerCallback>.Init(factory.Check_FairyGUI_TimerCallback);
@@ -132,7 +138,9 @@ public class DelegateFactory
 		StackTraits<FairyGUI.ListItemProvider>.Push = factory.Push_FairyGUI_ListItemProvider;
 		StackTraits<FairyGUI.PlayCompleteCallback>.Push = factory.Push_FairyGUI_PlayCompleteCallback;
 		StackTraits<FairyGUI.TransitionHook>.Push = factory.Push_FairyGUI_TransitionHook;
+		StackTraits<System.Action<FairyGUI.PackageItem>>.Push = factory.Push_System_Action_FairyGUI_PackageItem;
 		StackTraits<FairyGUI.UIPackage.LoadResource>.Push = factory.Push_FairyGUI_UIPackage_LoadResource;
+		StackTraits<FairyGUI.UIPackage.LoadResourceAsync>.Push = factory.Push_FairyGUI_UIPackage_LoadResourceAsync;
 		StackTraits<FairyGUI.UIPackage.CreateObjectCallback>.Push = factory.Push_FairyGUI_UIPackage_CreateObjectCallback;
 		StackTraits<FairyGUI.GObjectPool.InitCallbackDelegate>.Push = factory.Push_FairyGUI_GObjectPool_InitCallbackDelegate;
 		StackTraits<FairyGUI.TimerCallback>.Push = factory.Push_FairyGUI_TimerCallback;
@@ -1511,6 +1519,63 @@ public class DelegateFactory
 		ToLua.Push(L, o);
 	}
 
+	class System_Action_FairyGUI_PackageItem_Event : LuaDelegate
+	{
+		public System_Action_FairyGUI_PackageItem_Event(LuaFunction func) : base(func) { }
+		public System_Action_FairyGUI_PackageItem_Event(LuaFunction func, LuaTable self) : base(func, self) { }
+
+		public void Call(FairyGUI.PackageItem param0)
+		{
+			func.BeginPCall();
+			func.PushObject(param0);
+			func.PCall();
+			func.EndPCall();
+		}
+
+		public void CallWithSelf(FairyGUI.PackageItem param0)
+		{
+			func.BeginPCall();
+			func.Push(self);
+			func.PushObject(param0);
+			func.PCall();
+			func.EndPCall();
+		}
+	}
+
+	public System.Action<FairyGUI.PackageItem> System_Action_FairyGUI_PackageItem(LuaFunction func, LuaTable self, bool flag)
+	{
+		if (func == null)
+		{
+			System.Action<FairyGUI.PackageItem> fn = delegate(FairyGUI.PackageItem param0) { };
+			return fn;
+		}
+
+		if(!flag)
+		{
+			System_Action_FairyGUI_PackageItem_Event target = new System_Action_FairyGUI_PackageItem_Event(func);
+			System.Action<FairyGUI.PackageItem> d = target.Call;
+			target.method = d.Method;
+			return d;
+		}
+		else
+		{
+			System_Action_FairyGUI_PackageItem_Event target = new System_Action_FairyGUI_PackageItem_Event(func, self);
+			System.Action<FairyGUI.PackageItem> d = target.CallWithSelf;
+			target.method = d.Method;
+			return d;
+		}
+	}
+
+	bool Check_System_Action_FairyGUI_PackageItem(IntPtr L, int pos)
+	{
+		return TypeChecker.CheckDelegateType(typeof(System.Action<FairyGUI.PackageItem>), L, pos);
+	}
+
+	void Push_System_Action_FairyGUI_PackageItem(IntPtr L, System.Action<FairyGUI.PackageItem> o)
+	{
+		ToLua.Push(L, o);
+	}
+
 	class FairyGUI_UIPackage_LoadResource_Event : LuaDelegate
 	{
 		public FairyGUI_UIPackage_LoadResource_Event(LuaFunction func) : base(func) { }
@@ -1578,6 +1643,69 @@ public class DelegateFactory
 	}
 
 	void Push_FairyGUI_UIPackage_LoadResource(IntPtr L, FairyGUI.UIPackage.LoadResource o)
+	{
+		ToLua.Push(L, o);
+	}
+
+	class FairyGUI_UIPackage_LoadResourceAsync_Event : LuaDelegate
+	{
+		public FairyGUI_UIPackage_LoadResourceAsync_Event(LuaFunction func) : base(func) { }
+		public FairyGUI_UIPackage_LoadResourceAsync_Event(LuaFunction func, LuaTable self) : base(func, self) { }
+
+		public void Call(string param0, string param1, System.Type param2, FairyGUI.PackageItem param3)
+		{
+			func.BeginPCall();
+			func.Push(param0);
+			func.Push(param1);
+			func.Push(param2);
+			func.PushObject(param3);
+			func.PCall();
+			func.EndPCall();
+		}
+
+		public void CallWithSelf(string param0, string param1, System.Type param2, FairyGUI.PackageItem param3)
+		{
+			func.BeginPCall();
+			func.Push(self);
+			func.Push(param0);
+			func.Push(param1);
+			func.Push(param2);
+			func.PushObject(param3);
+			func.PCall();
+			func.EndPCall();
+		}
+	}
+
+	public FairyGUI.UIPackage.LoadResourceAsync FairyGUI_UIPackage_LoadResourceAsync(LuaFunction func, LuaTable self, bool flag)
+	{
+		if (func == null)
+		{
+			FairyGUI.UIPackage.LoadResourceAsync fn = delegate(string param0, string param1, System.Type param2, FairyGUI.PackageItem param3) { };
+			return fn;
+		}
+
+		if(!flag)
+		{
+			FairyGUI_UIPackage_LoadResourceAsync_Event target = new FairyGUI_UIPackage_LoadResourceAsync_Event(func);
+			FairyGUI.UIPackage.LoadResourceAsync d = target.Call;
+			target.method = d.Method;
+			return d;
+		}
+		else
+		{
+			FairyGUI_UIPackage_LoadResourceAsync_Event target = new FairyGUI_UIPackage_LoadResourceAsync_Event(func, self);
+			FairyGUI.UIPackage.LoadResourceAsync d = target.CallWithSelf;
+			target.method = d.Method;
+			return d;
+		}
+	}
+
+	bool Check_FairyGUI_UIPackage_LoadResourceAsync(IntPtr L, int pos)
+	{
+		return TypeChecker.CheckDelegateType(typeof(FairyGUI.UIPackage.LoadResourceAsync), L, pos);
+	}
+
+	void Push_FairyGUI_UIPackage_LoadResourceAsync(IntPtr L, FairyGUI.UIPackage.LoadResourceAsync o)
 	{
 		ToLua.Push(L, o);
 	}

@@ -46,7 +46,8 @@ local codeGenerators = {
     [ProjectType.Haxe] = require('GenCode_Haxe'),
     [ProjectType.Cocos2dx] = require('GenCode_CPP'),
     [ProjectType.Vision] = require('GenCode_CPP'),
-    [ProjectType.CocosCreator] = require('GenCode_TS')
+    [ProjectType.CocosCreator] = require('GenCode_TS'),
+    [ProjectType.ThreeJS] = require('GenCode_TS')
 }
 
 function genCodeDefault(handler)
@@ -71,6 +72,7 @@ function CodeWriter:ctor(config)
     end
     self.usingTabs = config.usingTabs
     self.endOfLine = config.endOfLine or '\n'
+    self.fileMark = config.fileMark or '/** This is an automatically generated class by FairyGUI. Please do not modify it. **/'
     self.lines = {}
     self.indent = 0
 
@@ -78,7 +80,7 @@ function CodeWriter:ctor(config)
 end
 
 function CodeWriter:writeMark()
-    table.insert(self.lines, '/** This is an automatically generated class by FairyGUI. Please do not modify it. **/')
+    table.insert(self.lines, self.fileMark)
     table.insert(self.lines, '')
 end
 

@@ -124,6 +124,7 @@ public static class LuaBinder
 		L.RegFunction("GTweenCallback1", FairyGUI_GTweenCallback1);
 		L.BeginModule("UIPackage");
 		L.RegFunction("LoadResource", FairyGUI_UIPackage_LoadResource);
+		L.RegFunction("LoadResourceAsync", FairyGUI_UIPackage_LoadResourceAsync);
 		L.RegFunction("CreateObjectCallback", FairyGUI_UIPackage_CreateObjectCallback);
 		L.EndModule();
 		L.BeginModule("GObjectPool");
@@ -144,6 +145,7 @@ public static class LuaBinder
 		L.RegFunction("Action_string", System_Action_string);
 		L.RegFunction("Func_bool", System_Func_bool);
 		L.RegFunction("Action_UnityEngine_AsyncOperation", System_Action_UnityEngine_AsyncOperation);
+		L.RegFunction("Action_FairyGUI_PackageItem", System_Action_FairyGUI_PackageItem);
 		L.EndModule();
 		L.EndModule();
 		L.BeginPreLoad();
@@ -623,6 +625,33 @@ public static class LuaBinder
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int FairyGUI_UIPackage_LoadResourceAsync(IntPtr L)
+	{
+		try
+		{
+			int count = LuaDLL.lua_gettop(L);
+			LuaFunction func = ToLua.CheckLuaFunction(L, 1);
+
+			if (count == 1)
+			{
+				Delegate arg1 = DelegateTraits<FairyGUI.UIPackage.LoadResourceAsync>.Create(func);
+				ToLua.Push(L, arg1);
+			}
+			else
+			{
+				LuaTable self = ToLua.CheckLuaTable(L, 2);
+				Delegate arg1 = DelegateTraits<FairyGUI.UIPackage.LoadResourceAsync>.Create(func, self);
+				ToLua.Push(L, arg1);
+			}
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int FairyGUI_UIPackage_CreateObjectCallback(IntPtr L)
 	{
 		try
@@ -963,6 +992,33 @@ public static class LuaBinder
 			{
 				LuaTable self = ToLua.CheckLuaTable(L, 2);
 				Delegate arg1 = DelegateTraits<System.Action<UnityEngine.AsyncOperation>>.Create(func, self);
+				ToLua.Push(L, arg1);
+			}
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int System_Action_FairyGUI_PackageItem(IntPtr L)
+	{
+		try
+		{
+			int count = LuaDLL.lua_gettop(L);
+			LuaFunction func = ToLua.CheckLuaFunction(L, 1);
+
+			if (count == 1)
+			{
+				Delegate arg1 = DelegateTraits<System.Action<FairyGUI.PackageItem>>.Create(func);
+				ToLua.Push(L, arg1);
+			}
+			else
+			{
+				LuaTable self = ToLua.CheckLuaTable(L, 2);
+				Delegate arg1 = DelegateTraits<System.Action<FairyGUI.PackageItem>>.Create(func, self);
 				ToLua.Push(L, arg1);
 			}
 			return 1;

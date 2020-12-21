@@ -20,7 +20,6 @@ local function genCode(handler)
     for i=0,classCnt-1 do
         local classInfo = classes[i]
         local members = classInfo.members
-        local references = classInfo.references
         writer:reset()
 
         writer:writeln('namespace %s', namespaceName)
