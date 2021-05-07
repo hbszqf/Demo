@@ -1,0 +1,6 @@
+framework module Override_OSX {
+  umbrella header "Override_OSX.h"
+
+  export *
+  module * { export * }
+}
