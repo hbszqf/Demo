@@ -17,6 +17,8 @@ public class FairyGUI_GComboBoxWrap
 		L.RegFunction("__tostring", ToLua.op_ToString);
 		L.RegVar("visibleItemCount", get_visibleItemCount, set_visibleItemCount);
 		L.RegVar("dropdown", get_dropdown, set_dropdown);
+		L.RegVar("sound", get_sound, set_sound);
+		L.RegVar("soundVolumeScale", get_soundVolumeScale, set_soundVolumeScale);
 		L.RegVar("onChanged", get_onChanged, null);
 		L.RegVar("icon", get_icon, set_icon);
 		L.RegVar("title", get_title, set_title);
@@ -195,6 +197,44 @@ public class FairyGUI_GComboBoxWrap
 		catch(Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e, o, "attempt to index dropdown on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_sound(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.GComboBox obj = (FairyGUI.GComboBox)o;
+			FairyGUI.NAudioClip ret = obj.sound;
+			ToLua.PushObject(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index sound on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_soundVolumeScale(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.GComboBox obj = (FairyGUI.GComboBox)o;
+			float ret = obj.soundVolumeScale;
+			LuaDLL.lua_pushnumber(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index soundVolumeScale on a nil value");
 		}
 	}
 
@@ -537,6 +577,44 @@ public class FairyGUI_GComboBoxWrap
 		catch(Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e, o, "attempt to index dropdown on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_sound(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.GComboBox obj = (FairyGUI.GComboBox)o;
+			FairyGUI.NAudioClip arg0 = (FairyGUI.NAudioClip)ToLua.CheckObject<FairyGUI.NAudioClip>(L, 2);
+			obj.sound = arg0;
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index sound on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_soundVolumeScale(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.GComboBox obj = (FairyGUI.GComboBox)o;
+			float arg0 = (float)LuaDLL.luaL_checknumber(L, 2);
+			obj.soundVolumeScale = arg0;
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index soundVolumeScale on a nil value");
 		}
 	}
 

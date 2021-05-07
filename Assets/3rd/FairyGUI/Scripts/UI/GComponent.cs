@@ -44,10 +44,6 @@ namespace FairyGUI
         Controller _applyingController;
 
         EventListener _onDrop;
-        
-#if FAIRYGUI_PUERTS
-        public Utils.VirualClassObject scriptInstance;
-#endif
 
         public GComponent()
         {
@@ -103,6 +99,13 @@ namespace FairyGUI
                 _peerTable.Dispose();
                 _peerTable = null;
             }
+#endif
+
+#if FAIRYGUI_PUERTS
+            if (__onDispose != null)
+                __onDispose();
+            __onConstruct = null;
+            __onDispose = null;
 #endif
         }
 
@@ -1531,6 +1534,17 @@ namespace FairyGUI
                 }
             }
 
+            if (buffer.version >= 5)
+            {
+                string str = buffer.ReadS();
+                if (!string.IsNullOrEmpty(str))
+                    this.onAddedToStage.Add(() => __playSound(str, 1));
+
+                string str2 = buffer.ReadS();
+                if (!string.IsNullOrEmpty(str2))
+                    this.onRemovedFromStage.Add(() => __playSound(str2, 1));
+            }
+
             buffer.Seek(0, 5);
 
             int transitionCount = buffer.ReadShort();
@@ -1569,9 +1583,8 @@ namespace FairyGUI
             CallLua("ctor");
 #endif
 #if FAIRYGUI_PUERTS
-            if (scriptInstance != null) {
-                scriptInstance.Call("OnConstruct");
-            }
+            if (__onConstruct != null)
+                __onConstruct();
 #endif
         }
 
@@ -1626,6 +1639,13 @@ namespace FairyGUI
             }
         }
 
+        void __playSound(string soundRes, float volumeScale)
+        {
+            NAudioClip sound = UIPackage.GetItemAssetByURL(soundRes) as NAudioClip;
+            if (sound != null && sound.nativeClip != null)
+                Stage.inst.PlayOneShotSound(sound.nativeClip, volumeScale);
+        }
+
         void __addedToStage()
         {
             int cnt = _transitions.Count;
@@ -1672,6 +1692,11 @@ namespace FairyGUI
 
             return false;
         }
+#endif
+
+#if FAIRYGUI_PUERTS
+        public Action __onConstruct;
+        public Action __onDispose;
 #endif
     }
 }

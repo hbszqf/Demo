@@ -144,7 +144,7 @@ namespace Assets._Scripts.Network
                 string[] s2Array = s1Array[2].Split(':');
                 //前缀 + 2个斜杠 + 域名
                 string sUrl = url.Substring(0, s1Array[0].Length + 2 + s2Array[0].Length);
-                string targetUrl;
+                string targetUrl ="";
                 object[] obj = { sUrl };
 
 
