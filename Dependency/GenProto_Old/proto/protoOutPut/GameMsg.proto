@@ -1,0 +1,28 @@
+
+
+GameMsg.protocom.kw.wow.proto"&
+
+AppendItem
+
+id (
+data (">
+
+AppendData0
+
+appendItem (2.com.kw.wow.proto.AppendItem"O
+Request
+apiId (
+clientIndex (
+data (
+
+appendData ("³
+Response
+apiId (
+clientIndex (
+serverIndex (
+data (
+result (0
+
+appendData (2.com.kw.wow.proto.AppendData
+compress (
+code (

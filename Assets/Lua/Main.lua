@@ -32,30 +32,31 @@ function M.StartMain()
     
 
     --登录游戏
-    GameBehaviourMgr.LoginGame()
+    --GameBehaviourMgr.LoginGame()
 
 
     CorUtil.StartCor(function(corUtil)
         --先连接服务器
-        local ret, msg = Network.Connect_cor("192.168.1.44", 9080, 1)
+        Log.QF("main测试连接服务器")
+        local ret, msg = Network.Connect_cor("192.168.129.157", 6545, 1)
 
         if not ret then
             Log.QF("connect server error")
             return
         end
 
-        Log.QF("连接服务器成功")
+        --Log.QF("main测试连接服务器")
 
         --登录
         local params = {}
-        params.centerUserId   = "hbqf"
-        params.centerSession  = "123456"
-        params.deviceId       = "1234454"
-        params.deviceType     = "3"
-        params.channel        ="444" 
-        params.zone           ="23456"
+        params.test_number   = 1
+        params.test_str  = "test"
+        -- params.deviceId       = "1234454"
+        -- params.deviceType     = "3"
+        -- params.channel        ="444" 
+        -- params.zone           ="23456"
 
-        local ret, userLoginRsp = Network.Send_cor("UserLogin",params)
+        local ret, userLoginRsp = Network.Send_cor("ReqTest",params)
     end)
 
 

@@ -1,7 +1,8 @@
 local Socket = import(".Socket")
 
 local M = {}
-local autoRecounnect = true
+--重连后面处理
+local autoRecounnect =  false
 local socket = Socket.new(0, autoRecounnect, isLog)
 
 

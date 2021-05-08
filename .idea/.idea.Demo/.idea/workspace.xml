@@ -2,8 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9f667fb6-056b-4463-8d9c-b7d768df7e54" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Demo/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Demo/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Demo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Demo/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/3rd/tolua/Plugins/tolua.bundle/Contents.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/3rd/tolua/Plugins/tolua.bundle/Contents.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/3rd/tolua/Plugins/tolua.bundle/Contents/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/3rd/tolua/Plugins/tolua.bundle/Contents/Info.plist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/3rd/tolua/Plugins/tolua.bundle/Contents/Info.plist.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/3rd/tolua/Plugins/tolua.bundle/Contents/Info.plist.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/3rd/tolua/Plugins/tolua.bundle/Contents/MacOS.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/3rd/tolua/Plugins/tolua.bundle/Contents/MacOS.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/3rd/tolua/Plugins/tolua.bundle/Contents/MacOS/tolua" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/3rd/tolua/Plugins/tolua.bundle/Contents/MacOS/tolua" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/3rd/tolua/Plugins/tolua.bundle/Contents/MacOS/tolua.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/3rd/tolua/Plugins/tolua.bundle/Contents/MacOS/tolua.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lua/Game/Controller/CtrlMgr.lua" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Lua/Game/Controller/CtrlMgr.lua" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lua/Game/Controller/Login/CtrlLogin.lua" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Lua/Game/Controller/Login/CtrlLogin.lua" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lua/Game/Manager/GameBehaviourMgr/State/login.lua" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Lua/Game/Manager/GameBehaviourMgr/State/login.lua" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lua/Main.lua" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Lua/Main.lua" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lua/Net/NetWork.lua" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Lua/Net/NetWork.lua" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lua/Net/Socket.lua" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Lua/Net/Socket.lua" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lua/Net/State/connected.lua" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Lua/Net/State/connected.lua" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lua/Net/tmProto.lua" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Lua/Net/tmProto.lua" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ResArt/DynamicArt/Protobuf/ApiMsg.proto" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ResArt/DynamicArt/Protobuf/ApiMsg.proto.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ResArt/DynamicArt/Protobuf/ApiUser.proto" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ResArt/DynamicArt/Protobuf/ApiUser.proto.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ResArt/DynamicArt/Protobuf/ApiUserDto.proto" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ResArt/DynamicArt/Protobuf/ApiUserDto.proto.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ResArt/DynamicArt/Protobuf/GameError.proto" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ResArt/DynamicArt/Protobuf/GameError.proto.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ResArt/DynamicArt/Protobuf/GameMsg.proto" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ResArt/DynamicArt/Protobuf/GameMsg.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Framework/Manager/LuaManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Framework/Manager/LuaManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Framework/Manager/NetWorkManager/NetWorkSupport/SocketClient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Framework/Manager/NetWorkManager/NetWorkSupport/SocketClient.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,20 +43,29 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Util/Log.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Framework/Manager/ResManager/ResManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Const/NotiConst.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Proxy/CSProxy.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Framework/Manager/NetWorkManager/NetworkManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Framework/Manager/NetWorkManager/NetWorkSupport/SocketClientProxy.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/3rd/tolua/ToLua/Core/LuaDLL.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Game/StartUp.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/3rd/tolua/ToLua/Core/ToLua.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Game/Main.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/3rd/tolua/ToLua/Core/LuaState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Framework/Core/Manager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/181E198A-F674-4D54-82D2-31B9E17B3F9B/44/2fd786ac/TcpClient.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/181E198A-F674-4D54-82D2-31B9E17B3F9B/12/33c8b85b/AddressFamily.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Framework/Manager/NetWorkManager/NetWorkSupport/SocketClient.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Proxy/CSProxy.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Framework/Manager/NetWorkManager/NetworkManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Framework/Manager/NetWorkManager/NetWorkSupport/MyWWW.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Framework/AppFacade.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Framework/Core/Manager.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Assets/Scripts/Framework/Manager/NetWorkManager/NetWorkSupport/MyWWW.cs" />
         <option value="$PROJECT_DIR$/../xlua-framework/Assets/AssetsPackage/Lua/XLua/HotfixMain.lua.bytes" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Framework/Manager/LuaManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Framework/Manager/NetWorkManager/NetWorkSupport/SocketClientProxy.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Framework/Manager/NetWorkManager/NetWorkSupport/SocketClient.cs" />
       </list>
     </option>
   </component>
@@ -80,6 +113,7 @@
       <updated>1620291195143</updated>
       <workItem from="1620291200096" duration="5498000" />
       <workItem from="1620374009658" duration="1448000" />
+      <workItem from="1620399632016" duration="8718000" />
     </task>
     <servers />
   </component>
@@ -103,8 +137,12 @@
     <option name="LOCAL_CHANGES_DETAILS_PREVIEW_SHOWN" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="906" y="224" width="886" height="853" key="find.popup" />
+    <state x="906" y="224" width="886" height="853" key="find.popup/1920.1080/3584.2240" />
+    <state x="220" y="224" width="886" height="853" key="find.popup/3584.2240" />
     <state x="2509" y="401" width="672" height="678" key="search.everywhere.popup" />
     <state x="2509" y="401" width="672" height="678" key="search.everywhere.popup/1920.1080/3584.2240" />
+    <state x="613" y="314" width="672" height="678" key="search.everywhere.popup/3584.2240" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

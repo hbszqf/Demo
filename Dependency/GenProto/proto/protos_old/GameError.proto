@@ -1,0 +1,27 @@
+package com.kw.wow.proto;
+
+enum ErrorCode {
+     NO_ERROR                                            = 0;                // 返回没有错误发生
+     INVALID_PARAM                                       = 5;                // 无效的参数
+     INTER_ERROR_UNCATCHED                               = 100;              // 内部错误：100
+     INTER_ERROR                                         = 101;              // 内部错误
+     INTER_ERROR_NO_HANDLER                              = 102;              // 调用的API没有对于的Handler, 内部错误：502
+     
+     
+     API_CHECK_SERVER_NOT_OPEN                           = 111;              // 尚未开服，不能登录
+     API_CHECK_SERVER_MAINTENANCE                        = 112;              // 服务器维护中，不能登录
+     API_CHECK_SERVER_IP_BLACK                           = 113;              // 登录限制，当前IP不能登录
+     API_CHECK_SERVER_REGISTER_CLOSE                     = 114;              // 该区服已关闭用户注册，请选择其他服
+     
+     USER_NAME_EXISTS                                    = 1000;             // 用户名不存在
+     USER_NICKNAME_EXIST                                 = 1001;             // 用户昵称已经存在
+     USERNAME_PROHIBIT                                   = 1002;             // 名字禁用
+     USER_NOT_EXISTS                                     = 1003;             // 用户不存在
+     USER_NAME_NOT_VALID                                 = 1004;             // 用户名不符合规则
+     USER_PASSWORD_NOT_VALID                             = 1005;             // 用户密码不符合规则
+     CENTER_USER_INVALID                                 = 1006;             // 中心服用户不合法
+     USER_NAME_PASSWORD_NOT_MATCH                        = 1007;             // 用户名和密码不匹配
+     INVALID_TOKEN                                       = 1008;             // 用户登录信息错误，请重新登录
+     ERROR_AUTH                                          = 1009;             // 认证错误
+     USER_STATUS_BAN                                     = 1010;             // 用户被禁  
+}

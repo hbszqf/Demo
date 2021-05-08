@@ -144,9 +144,11 @@ public class SocketClient
         //client.
         TcpClient localClient = client;
         var loom = Loom.Current;
+        
+        
         if (family == AddressFamily.InterNetwork)
         {
-            client.BeginConnect(host, port, delegate (IAsyncResult asr)
+            var result = client.BeginConnect(host, port, delegate (IAsyncResult asr)
             {
                 //中止连接请求
                 localClient.EndConnect(asr);
@@ -159,6 +161,7 @@ public class SocketClient
                     }
 
                     bool suc = client.Connected;
+                    Debug.Log("suc==="+suc);
                     //连接成功
                     OnConnect(suc);
                     //回调

@@ -3,7 +3,7 @@ local Proto = import(".Proto")
 
 local M = {}
 
-local proto_message = Proto.getProto("ApiId")
+local proto_message = Proto.getProto("MessageId")
 
 --消息名字 和 消息Id的映射
 local tmMessageId_MessageName = {}
@@ -30,13 +30,13 @@ end
 
 --获取请求消息名字
 function M.GetReqMessageName(messageId)
-    return tmMessageName_MessageId[messageId].."Req"
+    return tmMessageName_MessageId[messageId]
 end
 
 --获取响应消息名
 function M.GetRspMessageName(messageId)
     local messageName = tmMessageName_MessageId[messageId]
-    return messageName .. "Rsp"
+    return messageName
 end
 
 

@@ -153,8 +153,7 @@ namespace LuaFramework {
             //struct
             lua.OpenLibs(LuaDLL.luaopen_struct);
 
-            //protobuf_c
-            lua.OpenLibs(LuaDLL.luaopen_protobuf_c);
+            
 
             //cjson
             lua.LuaGetField(LuaIndexes.LUA_REGISTRYINDEX, "_LOADED");
@@ -162,6 +161,9 @@ namespace LuaFramework {
             lua.LuaSetField(-2, "cjson");
             lua.OpenLibs(LuaDLL.luaopen_cjson_safe);
             lua.LuaSetField(-2, "cjson.safe");
+            
+            //protobuf_c
+            lua.OpenLibs(LuaDLL.luaopen_protobuf_c);
 
 #if UNITY_EDITOR
             //snapShot

@@ -1,0 +1,45 @@
+package com.kw.wow.proto;
+import "api/ApiUserDto.proto";
+
+//用户登录游戏请求
+message UserLoginReq {
+    required string centerUserId  = 1;                                               // 玩家名称
+    required string centerSession = 2;                                               // 玩家密码
+    required string deviceId = 3;                                                    // 设备唯一号
+    required string deviceType = 4;                                                  // android/iOS， 设备类别
+    optional string channel = 5 ;                                                     // 渠道
+    optional string zone = 6;                                                        // 大区ID (对应gameArea)
+}
+
+//用户登录游戏
+message UserLoginRsp {
+    optional bool firstLogin                         = 1;    	//	时候首次登陆
+    optional DtoUser user                            = 2; 
+}
+
+
+{session = 1}
+
+//用户验证请求
+message UserAuthReq {
+	required string session = 1;
+}
+
+//用户校验
+message UserAuthRsp {
+    optional string session   = 1;
+    optional string staticVersion = 2;  // 静态资源的版本号,在登录和电线重连的时候返回
+}
+
+
+
+//快速登录请求
+message UserQuickLoginReq {
+
+}
+
+
+//快速登录
+message UserQuickLoginRsp {
+    optional string session   = 1;
+}

@@ -17,12 +17,13 @@ function M:ctor(slot, autoRecounnect, isLog)
     self:AddState("connecting", StateConnecting)    --连接中
 
     self.netCallback = function(event, data)
+        Log.QF(event)
         if event == 101 then
             self:OnConnect(true)
         elseif event == 102 then
             self:OnException()
         elseif event == 103 then
-           -- self:OnDisconnect()
+            self:OnDisconnect()
         elseif event == 104 then
            self:OnReceivedMessage(data)
         elseif event == 105 then
@@ -57,6 +58,7 @@ end
 
 
 function M:OnUpdate()
+    Log.QF(self:GetCurrentState():GetName())
     self:GetCurrentState():OnUpdate()
 end
 

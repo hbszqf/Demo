@@ -1,0 +1,8 @@
+package com.kw.wow.proto;
+
+enum ApiId {
+      //用户 10001~10100  每个功能的ID 预留100个
+      UserLoginRsp                                  = 10001; //用户登录
+      UserAuthRsp                                   = 10002; //用户验证
+      UserQuickLoginRsp                             = 10003; //快速登录
+}

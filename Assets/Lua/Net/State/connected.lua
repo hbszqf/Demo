@@ -39,6 +39,7 @@ function M:OnDisconnect()
     if not self.socket.autoRecounnect then
         self.socket:SwitchTo("idle")
     else
+        Log.QF("走自动重连")
         self.socket:SwitchTo("reconnect")
     end    
 end

@@ -1,0 +1,12 @@
+package com.kw.wow.proto;
+
+message DtoUser {
+    optional string userId = 2 ;                          // uuid
+    optional string username = 3 ;                        // 账号
+    optional string nickname = 4 ;                        // 玩家昵称
+    optional int32 avatar = 5 ;                            // 用户头像
+    optional int32 teamLevel = 6 ;                         // 战队等级
+    optional int32 vipLevel = 7;                           // 用户VIP等级
+    optional string sociatyId = 8;                         // 工会ID
+    optional int32 teamExp  = 13;                          // 战队等级经验值
+}

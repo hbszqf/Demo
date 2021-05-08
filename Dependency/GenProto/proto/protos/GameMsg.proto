@@ -1,0 +1,17 @@
+package com.bb.proto;
+
+
+
+message Request {
+	required int32 apiId = 1;//命令ID
+	required int32 clientIndex = 2;//客户端命令序号(用于标识唯一请求)
+    optional bytes data = 3;//命令主数据
+}
+
+//服务端发给客户端的命令数据
+message Response {
+    required int32 apiId = 1;//命令ID
+    optional bytes data = 2;//命令主数据
+	optional int32 code = 3; //错误码
+}
+

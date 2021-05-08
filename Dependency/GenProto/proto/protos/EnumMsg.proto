@@ -1,0 +1,7 @@
+package com.bb.proto;
+
+enum MessageId {
+      //用户 10001~10100  每个功能的ID 预留100个
+      ReqTest                             = 10001; //测试请求
+      RespTest                            = 10002; //测试响应                                                   
+}

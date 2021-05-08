@@ -1,0 +1,14 @@
+package com.bb.proto;
+
+
+
+message ReqTest {
+    required uint32 test_number = 1;
+    required string test_str = 2;
+}
+
+message RespTest {
+    required uint32 test_number = 1;
+    required string test_str = 2;
+}
+
